@@ -1,3 +1,17 @@
+# Connect 4 game
+
+## Click on the link below to start playing
+
+## https://jesselessa.github.io/connect4 
+
+# Game Rules
+
+First, decide who goes first (player 1 has the red tokens, player 2, the yellow ones). 
+Players must alternate turns, and only one token can be dropped in each turn. 
+On your turn, drop one of your colored tokens from the top into any of the seven slots. 
+The game ends when there is a 4-in-a-row or a stalemate.
+The starter of the previous game goes second on the next game.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
