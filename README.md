@@ -1,8 +1,6 @@
 # Connect 4 game
 
-## Click on the link below to start playing
-
-## https://jesselessa.github.io/connect4 
+## Click on the following link to start playing : https://jesselessa.github.io/connect4 
 
 # Game Rules
 
