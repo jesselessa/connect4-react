@@ -30,6 +30,15 @@ class App extends React.Component {
       board.push(row);
     }
 
+    // STATE MODIFICATION
+    this.setState({
+      board,
+      currentPlayer: this.state.player1,
+      gameOver: false,
+      message: "",
+    });
+
+    // CONSOLE EMPTY BOARD FILLED WITH NULL - NO PLAYER MOVES
     console.log(board);
   }
 
