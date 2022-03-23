@@ -67,6 +67,57 @@ class App extends React.Component {
     }
   }
 
+  checkHorizontalMoves(board) {
+    // CHECK ONLY IF COLUMN IS 3 OR LESS
+    for (let r = 0; r < 6; r++) {
+      for (let c = 0; c < 4; c++) {
+        if (board[r][c]) {
+          if (
+            board[r][c] === board[r][c + 1] &&
+            board[r][c] === board[r][c + 2] &&
+            board[r][c] === board[r][c + 3]
+          ) {
+            return board[r][c];
+          }
+        }
+      }
+    }
+  }
+
+  checkRightDiagonalMoves(board) {
+    // CHECK ONLY IF ROW IS 3 OR GREATER && COLUMN IS 3 OR LESS
+    for (let r = 3; r < 6; r++) {
+      for (let c = 0; c < 4; c++) {
+        if (board[r][c]) {
+          if (
+            board[r][c] === board[r - 1][c + 1] &&
+            board[r][c] === board[r - 2][c + 2] &&
+            board[r][c] === board[r - 3][c + 3]
+          ) {
+            return board[r][c];
+          }
+        }
+      }
+    }
+  }
+
+  checkLeftDiagonalMoves(board) {
+    // CHECK ONLY IF ROW IS 3 OR GREATER && COLUMN IS 3 OR GREATER
+    for (let r = 3; r < 6; r++) {
+      for (let c = 3; c < 7; c++) {
+        if (board[r][c]) {
+          if (
+            board[r][c] === board[r - 1][c - 1] &&
+            board[r][c] === board[r - 2][c - 2] &&
+            board[r][c] === board[r - 3][c - 3]
+          ) {
+            return board[r][c];
+          }
+        }
+      }
+    }
+  }
+
   render() {
     return <div>App</div>;
   }
