@@ -3,7 +3,7 @@ import React from "react";
 // STYLES
 import "./App.css";
 
-export default class App extends React.Component {
+class App extends React.Component {
   // State
   constructor() {
     super();
@@ -16,7 +16,26 @@ export default class App extends React.Component {
       gameOver: false,
       message: "",
     };
+  }
+
+  // INITIATE NEW GAME
+  initBoard() {
+    // CREATE A BLANK 6x7 BOARD
+    const board = [];
+    for (let r = 0; r < 6; r++) {
+      const row = [];
+      for (let c = 0; c < 7; c++) {
+        row.push(null);
+      }
+      board.push(row);
+    }
+
+    console.log(board);
+  }
+
   render() {
     return <div>App</div>;
   }
 }
+
+export default App;
