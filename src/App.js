@@ -49,6 +49,48 @@ class App extends React.Component {
       : this.state.player1;
   }
 
+  // EVERY TIME YOU CLICK ON A CELL, FUNCTION PLAY IS CALLED
+  play(c) {
+    // C = COLUMNINDEX - R = ROWINDEX
+    // CHECK IF GAME IS OVER OR NOT
+    if (!this.state.gameOver) {
+      let board = this.state.board;
+
+      for (let r = 5; r >= 0; r--) {
+        if (!board[r][c]) {
+          board[r][c] = this.state.currentPlayer;
+          break;
+        }
+      }
+
+      // CHECK BOARD STATUS
+      let result = this.checkAllMoves(board);
+      if (result === this.state.player1) {
+        this.setState({
+          board,
+          gameOver: true,
+          message: "Player 1 (red) wins !!!",
+        });
+      } else if (result === this.state.player2) {
+        this.setState({
+          board,
+          gameOver: true,
+          message: "Player 2 (yellow) wins !!!",
+        });
+      } else if (result === "draw") {
+        this.setState({ board, gameOver: true, message: "Draw game." });
+      } else {
+        this.setState({ board, currentPlayer: this.changePlayer() });
+      }
+    } else {
+      this.setState({
+        message: "Game over. Click on reset button to start a new game.",
+      });
+    }
+    // CONSOLE WITH PLAYER MOVES
+    console.log(this.state.board);
+  }
+
   checkVerticalMoves(board) {
     // CHECK ONLY IF ROW IS 3 OR GREATER
     for (let r = 3; r < 6; r++) {
