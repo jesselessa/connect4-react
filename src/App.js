@@ -181,6 +181,11 @@ class App extends React.Component {
     );
   }
 
+  // INITIATE BOARD WHEN FIRST APPEARS ON SCREEN
+  componentDidMount() {
+    this.initBoard();
+  }
+
   render() {
     return <div>App</div>;
   }
