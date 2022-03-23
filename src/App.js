@@ -2,6 +2,10 @@
 import React from "react";
 // STYLES
 import "./App.css";
+// COMPONENT
+import Row from "./components/Row";
+// IMAGE
+import children from "./assets/children.png";
 
 class App extends React.Component {
   // State
@@ -16,6 +20,9 @@ class App extends React.Component {
       gameOver: false,
       message: "",
     };
+
+    // BINDS
+    this.play = this.play.bind(this);
   }
 
   // INITIATE NEW GAME
@@ -187,7 +194,78 @@ class App extends React.Component {
   }
 
   render() {
-    return <div>App</div>;
+    return (
+      <main>
+        <section>
+          <aside className="gameRules">
+            <div className="logoTitle">
+              <p className="title">
+                <span className="letterM">M</span>
+                <span className="letterB">B</span>
+              </p>
+              <p className="subtitle">JEUX</p>
+            </div>
+
+            <div className="ref">
+              <img className="children" src={children} alt="children" />
+              <p>6 ans-Adulte</p>
+              <p className="players">2 joueurs</p>
+              <div className="separator"></div>
+            </div>
+
+            <div className="rules">
+              <p>
+                Insérez un jeton dans la grille à tour de rôle. Le premier
+                joueur qui réussit à aligner quatre jetons (horizontalement,
+                verticalement ou diagonalement) gagne la partie.
+              </p>
+              <p>
+                Si toutes les cases de la grille sont remplies et qu'aucun des
+                deux joueurs n'a réalisé un tel alignement, la partie est
+                déclarée nulle.
+              </p>
+              <p>
+                Appuyez sur le bouton "Reset" pour commencer une nouvelle
+                partie.
+              </p>
+            </div>
+          </aside>
+
+          <div className="titleAndBoard">
+            <div className="boardTitle">
+              <h1>Puissance 4</h1>
+            </div>
+
+            <div className="boardAndButton">
+              <div className="board">
+                {/* MESSAGE */}
+                <p className="message">{this.state.message}</p>
+                {/* BOARD */}
+                <table>
+                  <tbody>
+                    {/* ALL ROWS MAPPING TO GET THE ROW COMPONENT */}
+                    {this.state.board.map((row, i) => (
+                      <Row key={i} row={row} play={this.play} />
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {/* RESET BUTTON */}
+              <div className="buttonBox">
+                <div
+                  className="button"
+                  onClick={() => {
+                    this.initBoard();
+                  }}
+                >
+                  RESET
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    );
   }
 }
 

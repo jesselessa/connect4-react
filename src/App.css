@@ -1,38 +1,327 @@
-.App {
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/* Font family */
+@font-face {
+  font-family: "oleo bold";
+  src: url("./font-family/Oleo_Script/OleoScript-Bold.ttf");
+}
+@font-face {
+  font-family: "oleo regular";
+  src: url("./font-family/Oleo_Script/OleoScript-Regular.ttf");
+}
+
+@font-face {
+  font-family: "anton";
+  src: url("./font-family/Anton-Regular.ttf");
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("./font-family/RobotoCondensed-Bold.ttf");
+}
+
+/* Font-size */
+html {
+  font-size: 62.5%;
+}
+
+/* Font-family by default */
+body {
+  font-family: Arial;
+  font-size: 1.5rem;
+}
+
+/* Main blocks */
+main {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+}
+section {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  text-shadow: 0.2rem 0 0 rgb(255, 255, 255), -0.2rem 0 0 rgb(255, 255, 255),
+    0 0.2rem 0 rgb(255, 255, 255), 0 -0.2rem 0 rgb(255, 255, 255),
+    0.1rem 0.1rem rgb(255, 255, 255), -0.1rem -0.1rem 0 rgb(255, 255, 255),
+    -0.1rem -0.1rem 0 rgb(255, 255, 255), -0.1rem 0.1rem 0 rgb(255, 255, 255);
+  font-size: 7rem;
+  font-family: "oleo bold";
+  color: #f15930;
+}
+/* Game Rules box */
+.gameRules {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 25vw;
+  height: 100vh;
+  border-right: 0.3rem solid #f15930;
+  padding: 1rem;
+  background: #f3b98e;
+}
+.logoTitle {
+  font-family: "anton";
+  font-weight: 400;
+  font-size: 7.5rem;
+  height: 20vh;
+  width: 100%;
+  text-align: center;
+  line-height: 1;
+}
+.title {
+  text-shadow: 0.2rem 0 0 rgb(255, 255, 255), 0.2rem 0 0 rgb(255, 255, 255),
+    0 0.2rem 0 rgb(255, 255, 255), 0 -0.2rem 0 rgb(255, 255, 255),
+    0.1rem 0.1rem rgb(255, 255, 255), -0.1rem -0.1rem 0 rgb(255, 255, 255),
+    -0.1rem -0.1rem 0 rgb(255, 255, 255), -0.1rem 0.1rem 0 rgb(255, 255, 255);
+}
+.letterM {
+  color: #f15930;
+}
+.letterB {
+  color: #2858a1;
+}
+.subtitle {
+  font-size: 3rem;
+  font-family: "roboto";
+  font-weight: 800;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.ref {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  height: 30vh;
+  width: 100%;
+}
+.children {
+  width: 5rem;
+  height: 5rem;
+  margin-bottom: 1rem;
+}
+.ref p,
+.rules p {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+.players {
+  margin-bottom: 2rem !important;
+}
+.separator {
+  background: #2858a1;
+  height: 0.3rem;
+  width: 70%;
+  margin-bottom: 2rem;
+}
+.rules {
+  text-align: justify;
+  width: 100%;
+  height: 50vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Title and board box */
+.titleAndBoard {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  width: 75vw;
+  height: 100vh;
+  max-width: 100%;
+  background: url(./assets/kidsroom.jpg) no-repeat center / cover;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.boardTitle {
+  height: 15vh;
+  width: 100%;
+}
+.boardAndButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  width: 100%;
+}
+.board {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: 75vh;
+  width: 100%;
+}
+.buttonBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+  width: 100%;
+}
+/* Text message and animation */
+.message {
+  font-family: "oleo regular";
+  animation: 2s message ease infinite;
   color: white;
+  margin: 1rem;
+  text-align: center;
+  font-size: 3rem;
+  margin: 0rem auto 1rem auto;
+  width: 60vh;
+  line-height: 1;
+  max-width: 100%;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Text animation */
+@keyframes message {
+  0% {
+    color: white;
+    transform: scale(0);
+    opacity: 0;
+    text-shadow: 0.2rem 0 0 #f15930, -0.2rem 0 0 #f15930, 0 0.2rem 0 #f15930,
+      0 -0.2rem 0 #f15930, 0.1rem 0.1rem #f15930, -0.1rem -0.1rem 0 #f15930,
+      -0.1rem -0.1rem 0 #f15930, -0.1rem 0.1rem 0 #f15930;
   }
-  to {
-    transform: rotate(360deg);
+  25% {
+    color: #f15930;
+    transform: scale(1.5);
+    opacity: 1;
+    text-shadow: 0.2rem 0 0 rgb(255, 255, 255), -0.2rem 0 0 rgb(255, 255, 255),
+      0 0.2rem 0 rgb(255, 255, 255), 0 -0.2rem 0 rgb(255, 255, 255),
+      0.1rem 0.1rem rgb(255, 255, 255), -0.1rem -0.1rem 0 rgb(255, 255, 255),
+      -0.1rem -0.1rem 0 rgb(255, 255, 255), -0.1rem 0.1rem 0 rgb(255, 255, 255);
+  }
+  50% {
+    color: white;
+    transform: scale(1);
+    opacity: 1;
+    text-shadow: 0.2rem 0 0 #f15930, -0.2rem 0 0 #f15930, 0 0.2rem 0 #f15930,
+      0 -0.2rem 0 #f15930, 0.1rem 0.1rem #f15930, -0.1rem -0.1rem 0 #f15930,
+      -0.1rem -0.1rem 0 #f15930, -0.1rem 0.1rem 0 #f15930;
+  }
+  100% {
+    /* animate nothing to add pause at the end of animation */
+    transform: scale(1);
+    opacity: 1;
+    text-shadow: 2px 0 0 #f15930, -2px 0 0 #f15930, 0 2px 0 #f15930,
+      0 -2px 0 #f15930, 1px 1px #f15930, -1px -1px 0 #f15930, 1px -1px 0 #f15930,
+      -1px 1px 0 #f15930;
+  }
+}
+table {
+  border-spacing: 0;
+}
+.cell {
+  height: 7rem;
+  width: 7rem;
+  background-color: #2858a1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0.9;
+}
+.white {
+  height: 6rem;
+  width: 6rem;
+  background-color: white;
+  border-radius: 50%;
+}
+.red {
+  height: 6rem;
+  width: 6rem;
+  background-color: #f15930;
+  border-radius: 50%;
+  transition: background-color 0.5s;
+}
+.yellow {
+  height: 6rem;
+  width: 6rem;
+  background-color: #ffd700;
+  border-radius: 50%;
+  transition: background-color 0.5s;
+}
+
+/* Reset Button */
+.buttonBox {
+  margin-top: 2rem;
+}
+.button {
+  background-color: #f15930;
+  color: white;
+  height: 4rem;
+  width: 10rem;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  margin-top: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.5s, color 0.5s;
+}
+.button:hover {
+  background-color: orange;
+  color: black;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+/*************** MEDIA QUERIES *****************/
+
+@media only screen and (max-width: 992px) {
+  main,
+  section,
+  .gameRules,
+  .logoTitle,
+  .ref,
+  .rules,
+  .titleAndBoard,
+  .boardTitle,
+  .board,
+  .buttonBox {
+    height: auto;
+  }
+  h1 {
+    font-size: 4.5rem;
+  }
+  section {
+    flex-direction: column;
+  }
+  .gameRules,
+  .titleAndBoard {
+    width: 100vw;
+  }
+  .message {
+    width: 40vw;
+    font-size: 1.5rem;
+  }
+  .table {
+    width: 100%;
+  }
+  .cell {
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+  .white,
+  .red,
+  .yellow {
+    width: 3rem;
+    height: 3rem;
   }
 }
