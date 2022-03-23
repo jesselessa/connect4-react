@@ -118,6 +118,27 @@ class App extends React.Component {
     }
   }
 
+  checkDraw(board) {
+    for (let r = 0; r < 6; r++) {
+      for (let c = 0; c < 7; c++) {
+        if (board[r][c] === null) {
+          return null;
+        }
+      }
+    }
+    return "draw";
+  }
+
+  checkAllMoves(board) {
+    return (
+      this.checkVerticalMoves(board) ||
+      this.checkRightDiagonalMoves(board) ||
+      this.checkLeftDiagonalMoves(board) ||
+      this.checkHorizontalMoves(board) ||
+      this.checkDraw(board)
+    );
+  }
+
   render() {
     return <div>App</div>;
   }
