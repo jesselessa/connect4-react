@@ -1,3 +1,9 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//                          RULES.JS                              //
+//                      LINKED TO APP.JS                          //
+//          HTML PART THAT SHOW RULES ON THE LEFT SIDE            //
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
 // REACT
 import React from "react";
 // IMAGES
