@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/connect4-react/static/css/main.406117cc.css",
+    "main.css": "/connect4-react/static/css/main.d5a6f516.css",
     "main.js": "/connect4-react/static/js/main.b5a037d1.js",
     "static/js/787.b2d9312e.chunk.js": "/connect4-react/static/js/787.b2d9312e.chunk.js",
     "static/media/kidsroom.jpg": "/connect4-react/static/media/kidsroom.1912ecaa7dd6c8b1f177.jpg",
@@ -9,12 +9,12 @@
     "static/media/OleoScript-Regular.ttf": "/connect4-react/static/media/OleoScript-Regular.fe131114c0882f16def0.ttf",
     "static/media/OleoScript-Bold.ttf": "/connect4-react/static/media/OleoScript-Bold.49551f0a3cf38006d52b.ttf",
     "index.html": "/connect4-react/index.html",
-    "main.406117cc.css.map": "/connect4-react/static/css/main.406117cc.css.map",
+    "main.d5a6f516.css.map": "/connect4-react/static/css/main.d5a6f516.css.map",
     "main.b5a037d1.js.map": "/connect4-react/static/js/main.b5a037d1.js.map",
     "787.b2d9312e.chunk.js.map": "/connect4-react/static/js/787.b2d9312e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.406117cc.css",
+    "static/css/main.d5a6f516.css",
     "static/js/main.b5a037d1.js"
   ]
 }
