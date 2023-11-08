@@ -302,13 +302,26 @@ table {
     width: 100%;
   }
   .cell {
+    height: 4.5rem;
+    width: 4.5rem;
+  }
+  .white,
+  .red,
+  .yellow {
+    max-width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+@media only screen and (max-width: 410px) {
+  .cell {
     height: 3.5rem;
     width: 3.5rem;
   }
   .white,
   .red,
   .yellow {
-    width: 3rem;
-    height: 3rem;
+    max-width: 2.5rem;
+    height: 2.5rem;
   }
 }
