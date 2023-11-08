@@ -1,7 +1,8 @@
-# Connect 4 
+# Connect4-React
+
 A Connect 4 game created with React
 
-## https://jesselessa.github.io/connect4 
+## https://jesselessa.github.io/connect4-react 
 Click on the link above to start playing  
 
 # Game Rules
