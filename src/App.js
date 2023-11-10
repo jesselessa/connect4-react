@@ -8,15 +8,14 @@
 import React from "react";
 // STYLES
 import "./App.css";
-// COMPONENT
+// COMPONENTS
 import Row from "./components/Row";
 import Rules from "./components/Rules";
 
 class App extends React.Component {
-  // State
   constructor() {
     super();
-
+  // STATE
     this.state = {
       player1: 1,
       player2: 2,

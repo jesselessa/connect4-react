@@ -1,7 +1,7 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 //                          RULES.JS                              //
 //                      LINKED TO APP.JS                          //
-//          HTML PART THAT SHOW RULES ON THE LEFT SIDE            //
+//          JSX PART THAT SHOW RULES ON THE LEFT SIDE            //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // REACT
