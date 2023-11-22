@@ -15,7 +15,7 @@ import Rules from "./components/Rules";
 class App extends React.Component {
   constructor() {
     super();
-  // STATE
+    // STATE
     this.state = {
       player1: 1,
       player2: 2,
@@ -50,7 +50,7 @@ class App extends React.Component {
     });
 
     // CONSOLE EMPTY BOARD FILLED WITH NULL - NO PLAYER MOVES
-    console.log(board);
+    // console.log(board);
   }
 
   // CURRENT PLAYER -> NEXT PLAYER
@@ -62,7 +62,7 @@ class App extends React.Component {
 
   // EVERY TIME YOU CLICK ON A CELL, FUNCTION PLAY IS CALLED
   play(c) {
-    // C = COLUMNINDEX - R = ROWINDEX
+    // c = column index & r = row index
     // CHECK IF GAME IS OVER OR NOT
     if (!this.state.gameOver) {
       let board = this.state.board;
@@ -99,7 +99,7 @@ class App extends React.Component {
       });
     }
     // CONSOLE WITH PLAYER MOVES
-    console.log(this.state.board);
+    // console.log(this.state.board);
   }
 
   checkVerticalMoves(board) {
