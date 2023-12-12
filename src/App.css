@@ -156,7 +156,6 @@ h1 {
     0 0.2rem 0 rgb(255, 255, 255), 0 -0.2rem 0 rgb(255, 255, 255),
     0.1rem 0.1rem rgb(255, 255, 255), -0.1rem -0.1rem 0 rgb(255, 255, 255),
     -0.1rem -0.1rem 0 rgb(255, 255, 255), -0.1rem 0.1rem 0 rgb(255, 255, 255);
-  padding-top: 1rem;
 }
 .boardAndButton {
   min-height: 82vh;
@@ -315,9 +314,6 @@ table {
   }
 }
 @media only screen and (max-width: 374px) {
-  h1 {
-    font-size: 4.5rem;
-  }
   .cell {
     height: 3.5rem;
     width: 3.5rem;
