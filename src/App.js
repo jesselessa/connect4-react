@@ -199,44 +199,39 @@ class App extends React.Component {
 
   render() {
     return (
-      <main>
-        <section>
-          <Rules />
+      // MAIN BLOCK
+      <div className="App">
+        <Rules />
 
-          <div className="titleAndBoard">
-            <div className="boardTitle">
-              <h1>Puissance 4</h1>
-            </div>
+        <div className="titleAndBoard">
+          <div className="titleDiv">
+            <h1>Puissance 4</h1>
+          </div>
 
-            <div className="boardAndButton">
-              <div className="board">
-                {/* MESSAGE */}
-                <p className="message">{this.state.message}</p>
-                {/* BOARD */}
-                <table>
-                  <tbody>
-                    {/* ALL ROWS MAPPING TO GET THE ROW COMPONENT */}
-                    {this.state.board.map((row, i) => (
-                      <Row key={i} row={row} play={this.play} />
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              {/* RESET BUTTON */}
-              <div className="buttonBox">
-                <div
-                  className="button"
-                  onClick={() => {
-                    this.initBoard();
-                  }}
-                >
-                  RESET
-                </div>
-              </div>
+          <div className="boardAndButton">
+            {/* MESSAGE */}
+            <p className="message">{this.state.message}</p>
+            {/* BOARD */}
+            <table>
+              <tbody>
+                {/* ALL ROWS MAPPING TO GET THE ROW COMPONENT */}
+                {this.state.board.map((row, i) => (
+                  <Row key={i} row={row} play={this.play} />
+                ))}
+              </tbody>
+            </table>
+            {/* RESET BUTTON */}
+            <div
+              className="button"
+              onClick={() => {
+                this.initBoard();
+              }}
+            >
+              RESET
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </div>
     );
   }
 }
