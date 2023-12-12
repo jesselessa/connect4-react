@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/connect4-react/static/css/main.a6d96013.css",
-    "main.js": "/connect4-react/static/js/main.6e1ab5e4.js",
+    "main.css": "/connect4-react/static/css/main.17ba4623.css",
+    "main.js": "/connect4-react/static/js/main.7ae8ca26.js",
     "static/media/kidsroom.jpg": "/connect4-react/static/media/kidsroom.1912ecaa7dd6c8b1f177.jpg",
     "static/media/RobotoCondensed-Bold.ttf": "/connect4-react/static/media/RobotoCondensed-Bold.c5fe6deebafaec078e64.ttf",
     "static/media/Anton-Regular.ttf": "/connect4-react/static/media/Anton-Regular.170b842f9a8cd6150a0d.ttf",
     "static/media/OleoScript-Regular.ttf": "/connect4-react/static/media/OleoScript-Regular.fe131114c0882f16def0.ttf",
     "static/media/OleoScript-Bold.ttf": "/connect4-react/static/media/OleoScript-Bold.49551f0a3cf38006d52b.ttf",
     "index.html": "/connect4-react/index.html",
-    "main.a6d96013.css.map": "/connect4-react/static/css/main.a6d96013.css.map",
-    "main.6e1ab5e4.js.map": "/connect4-react/static/js/main.6e1ab5e4.js.map"
+    "main.17ba4623.css.map": "/connect4-react/static/css/main.17ba4623.css.map",
+    "main.7ae8ca26.js.map": "/connect4-react/static/js/main.7ae8ca26.js.map"
   },
   "entrypoints": [
-    "static/css/main.a6d96013.css",
-    "static/js/main.6e1ab5e4.js"
+    "static/css/main.17ba4623.css",
+    "static/js/main.7ae8ca26.js"
   ]
 }
