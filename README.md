@@ -7,6 +7,7 @@ This project is an implementation of the well-known 'Connect 4' game.
 - [Demo](#demo)
 - [Stack](#stack)
 - [Screenshot](#screenshot)
+- [Main features](#main-features)
 - [Game rules](#game-rules)
 - [Run the project locally](#run-the-project-locally)
 - [Getting started with Create React App](#getting-started-with-create-react-app)
@@ -28,11 +29,17 @@ This project has been created with React using Create React App. It uses Class c
 
 ![Screenshot](./public/screenshot.png)
 
+## Main features
+
+- Automatic detection of each player's turn.
+- Automatic detection of a victory or a stalemate (draw).
+- Reset of the grid to start a new game.
+
 ## Game Rules
 
 - First, decide which player goes first (player 1 has the red tokens, player 2, the yellow ones). Players must alternate turns.
 - On your turn, drop one of your colored tokens from the top into any of the seven slots.
-- The game ends when there is a 4-in-a-row or a stalemate.
+- The game ends when there are four tokens lined up in a row (either horizontally, vertically, or diagonally) or a stalemate.
 - Click on the 'Reset' button to start a new game.
 - The starter of the previous game goes second on the next game.
 
