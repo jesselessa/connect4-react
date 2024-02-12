@@ -33,9 +33,9 @@ It uses Class components (before React 16.8, it was the only way to track state 
 
 ## Main features
 
-- **Automatic detection of each player's turn**.
-- **Automatic detection of a victory or a stalemate** (draw).
-- **Reset of the grid** to start a new game.
+- Automatic detection of each player's turn.
+- Automatic detection of a victory or a stalemate (draw).
+- Reset of the grid to start a new game.
 
 ## Game Rules
 
