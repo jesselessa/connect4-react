@@ -10,9 +10,7 @@ This project is an implementation of the well-known 'Connect 4' game.
 - [Main features](#main-features)
 - [Game rules](#game-rules)
 - [Run the project locally](#run-the-project-locally)
-- [Getting started with Create React App](#getting-started-with-create-react-app)
-  - [Available scripts](#available-scripts)
-  - [Learn more](#learn-more)
+- [Getting started with Vite](#getting-started-with-vite)
 - [Contributing](#contributing)
 - [Stay Updated](#stay-updated)
 - [Contact](#contact)
@@ -54,76 +52,35 @@ It uses Class components (before React 16.8, it was the only way to track state 
 5. Run the application in development mode : `npm start`
 6. Open http://localhost:3000 in your preferred browser to view the development server.
 
-## Getting Started with Create React App
+## Getting Started with Vite
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Vite](https://vitejs.dev/) is a fast development tool for modern web applications. To get started with Vite, follow these simple steps :
 
-### Available Scripts
+### 1. Install Node.js and npm
 
-In the project directory, you can run :
+Ensure you have Node.js and npm installed on your system. You can download and install them from the [official Node.js website](https://nodejs.org/en).
 
-#### `npm start`
+### 2. Initialize the project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+If you have not already created a project, you can initialize a new project using the following command in your terminal : `npm init vite@latest my-project --template react`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This command will create a new directory named `my-project` and install a Vite project with a React template in it.
 
-#### `npm test`
+### 3. Install dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Once the project is initialized, navigate to the newly created directory (`cd my-project`) and install the dependencies by running the command `npm install`.
 
-#### `npm run build`
+### 4. Start the development server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To start the development server, use the command `npm run dev`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed !
+This will launch Vite and automatically open your default browser to http://localhost:5173, where you can see your live application.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 5. Deploy to production
 
-#### `npm run eject`
+To build an optimized version of your application ready for production, use the command `npm run build`.
 
-**Note : this is a one-way operation. Once you `eject`, you can't go back !**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-### Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-#### Code Splitting
-
-This section has moved here : [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-#### Analyzing the Bundle Size
-
-This section has moved here : [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-#### Making a Progressive Web App
-
-This section has moved here : [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-#### Advanced Configuration
-
-This section has moved here : [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-#### Deployment
-
-This section has moved here : [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-#### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This will generate a production-ready version of your application in the `dist` directory of your project.
 
 ## Contributing
 

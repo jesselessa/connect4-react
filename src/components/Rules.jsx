@@ -1,13 +1,13 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-//                          RULES.JS                              //
-//                      LINKED TO APP.JS                          //
-//          JSX PART THAT SHOW RULES ON THE LEFT SIDE            //
+//                          RULES.JSX                             //
+//                      LINKED TO APP.JSX                         //
+//              DEFINES GAME RULES ON THE LEFT SIDE               //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // REACT
 import React from "react";
 // IMAGES
-import children from "../assets/children.png";
+import children from "../assets/images/children.png";
 
 class Rules extends React.Component {
   render() {

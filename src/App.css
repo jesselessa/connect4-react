@@ -7,21 +7,21 @@
 /* Font family */
 @font-face {
   font-family: "oleo bold";
-  src: url("./font-family/Oleo_Script/OleoScript-Bold.ttf");
+  src: url("./assets/font-family/Oleo_Script/OleoScript-Bold.ttf");
 }
 @font-face {
   font-family: "oleo regular";
-  src: url("./font-family/Oleo_Script/OleoScript-Regular.ttf");
+  src: url("./assets/font-family/Oleo_Script/OleoScript-Regular.ttf");
 }
 
 @font-face {
   font-family: "anton";
-  src: url("./font-family/Anton-Regular.ttf");
+  src: url("./assets/font-family/Anton-Regular.ttf");
 }
 
 @font-face {
   font-family: "roboto";
-  src: url("./font-family/RobotoCondensed-Bold.ttf");
+  src: url("./assets/font-family/RobotoCondensed-Bold.ttf");
 }
 
 /* Font-size */
@@ -133,7 +133,7 @@ body {
   width: 75vw;
   min-height: 100vh;
   max-width: 100%;
-  background: url("./assets/kidsroom.jpg") no-repeat center / cover;
+  background: url("./assets/images/kidsroom.jpg") no-repeat center / cover;
 }
 .titleDiv,
 .boardAndButton {

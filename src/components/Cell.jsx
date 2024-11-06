@@ -1,6 +1,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-//                            CELL.JS                             //
-//                        LINKED TO ROW.JS                        //
+//                            CELL.JSX                            //
+//                        LINKED TO ROW.JSX                       //
 //          DEFINES PLAYER'S CELL COLOR & MAKE IT CLICKABLE       //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 

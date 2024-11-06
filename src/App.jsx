@@ -9,8 +9,8 @@ import React from "react";
 // STYLES
 import "./App.css";
 // COMPONENTS
-import Row from "./components/Row";
-import Rules from "./components/Rules";
+import Row from "./components/Row.jsx";
+import Rules from "./components/Rules.jsx";
 
 class App extends React.Component {
   constructor() {

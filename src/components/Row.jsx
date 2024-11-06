@@ -1,13 +1,13 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-//                            ROW.JS                              //
-//                        LINKED TO APP.JS                        //
+//                            ROW.JSX                             //
+//                        LINKED TO APP.JSX                       //
 //                  DEFINES CELLS FOR EVERY ROWS                  //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // REACT
 import React from "react";
 // COMPONENT
-import Cell from "./Cell";
+import Cell from "./Cell.jsx";
 
 class Row extends React.Component {
   render() {
