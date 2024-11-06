@@ -21,7 +21,7 @@ You can play the game [here](https://jesselessa.github.io/connect4-react).
 
 ## Stack
 
-This project has been created with React using Create React App.
+This project has been created with React using Vite.
 
 It uses Class components (before React 16.8, it was the only way to track state and lifecycle on a React component).
 
