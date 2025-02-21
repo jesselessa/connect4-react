@@ -1,11 +1,12 @@
 // REACT
-import React, { Component, createRef } from "react";
-// AUDIO AND IMAGES
+import React, { createRef } from "react";
+// AUDIO
 import bgMusic from "../assets/audio/80s-music-electric-dreams.mp3";
+//IMAGES
 import soundOn from "../assets/images/sound-on.png";
 import soundOff from "../assets/images/sound-off.png";
 
-class Speaker extends Component {
+class Speaker extends React.Component {
   constructor(props) {
     super(props);
     // Create a reference
@@ -40,15 +41,25 @@ class Speaker extends Component {
     }
   };
 
+  // Stop the background music completely
+  stopMusic = () => {
+    if (this.audioRef.current) {
+      this.audioRef.current.pause();
+      this.audioRef.current.currentTime = 0; // Reset to start
+      this.setState({ isPlaying: false }, this.updateCaption);
+    }
+  };
+
   // Update image caption based on window width and music state
   updateCaption = () => {
-    if (window.innerWidth <= 700) {
-      this.setState({ caption: "" });
-    } else {
-      this.setState({
-        caption: this.state.isPlaying ? "Sound off" : "Sound on",
-      });
-    }
+    this.setState({
+      caption:
+        window.innerWidth > 500
+          ? this.state.isPlaying
+            ? "Sound off"
+            : "Sound on"
+          : "",
+    });
   };
 
   render() {

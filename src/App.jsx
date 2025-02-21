@@ -5,13 +5,16 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // REACT
-import React from "react";
+import React, { createRef } from "react";
 // STYLES
 import "./App.css";
 // COMPONENTS
 import Row from "./components/Row.jsx";
 import Rules from "./components/Rules.jsx";
 import Speaker from "./components/Speaker.jsx";
+// AUDIO
+import winner from "./assets/audio/winning.mp3";
+import drawOrFailure from "./assets/audio/draw-or-failure.mp3";
 
 class App extends React.Component {
   constructor() {
@@ -26,6 +29,9 @@ class App extends React.Component {
       message: "",
     };
 
+    // SPEAKER REFERENCE
+    this.speakerRef = createRef();
+
     // BINDS
     this.play = this.play.bind(this);
   }
@@ -33,25 +39,17 @@ class App extends React.Component {
   // INITIATE NEW GAME
   initBoard() {
     // CREATE A BLANK 6x7 BOARD
-    const board = [];
-    for (let r = 0; r < 6; r++) {
-      const row = [];
-      for (let c = 0; c < 7; c++) {
-        row.push(null);
-      }
-      board.push(row);
-    }
+    const board = Array(6)
+      .fill(null)
+      .map(() => Array(7).fill(null));
+    // console.log(board);
 
-    // STATE MODIFICATION
     this.setState({
       board,
       currentPlayer: this.state.player1,
       gameOver: false,
       message: "",
     });
-
-    // CONSOLE EMPTY BOARD FILLED WITH NULL - NO PLAYER MOVES
-    // console.log(board);
   }
 
   // CURRENT PLAYER -> NEXT PLAYER
@@ -77,32 +75,45 @@ class App extends React.Component {
 
       // CHECK BOARD STATUS
       let result = this.checkAllMoves(board);
-      if (result === this.state.player1) {
+
+      if (result === this.state.player1 || result === this.state.player2) {
+        this.stopBackgroundMusic();
+        this.playSound(winner);
         this.setState({
           board,
           gameOver: true,
-          message: "Player 1 (red) wins !!!",
-        });
-      } else if (result === this.state.player2) {
-        this.setState({
-          board,
-          gameOver: true,
-          message: "Player 2 (yellow) wins !!!",
+          message: `Player ${result} wins !!!`,
         });
       } else if (result === "draw") {
+        this.stopBackgroundMusic();
+        this.playSound(drawOrFailure);
         this.setState({ board, gameOver: true, message: "Draw game." });
       } else {
         this.setState({ board, currentPlayer: this.changePlayer() });
       }
     } else {
+      this.stopBackgroundMusic();
+      this.playSound(drawOrFailure);
       this.setState({
         message: "Game over. Click on reset button to start a new game.",
       });
     }
-    // CONSOLE WITH PLAYER MOVES
-    // console.log(this.state.board);
   }
 
+  // STOP BACKGROUND MUSIC VIA SPEAKER COMPONENT
+  stopBackgroundMusic() {
+    if (this.speakerRef.current) {
+      this.speakerRef.current.stopMusic();
+    }
+  }
+
+  // PLAY SOUND EFFECTS
+  playSound(audioFile) {
+    const audio = new Audio(audioFile);
+    audio.play();
+  }
+
+  // CHECK PLAYER MOVES
   checkVerticalMoves(board) {
     // CHECK ONLY IF ROW IS 3 OR GREATER
     for (let r = 3; r < 6; r++) {
@@ -205,8 +216,8 @@ class App extends React.Component {
         <Rules />
 
         <div className="titleAndBoard">
-          {/* Music on/off */}
-          <Speaker />
+          {/* Pass the reference to Speaker */}
+          <Speaker ref={this.speakerRef} />
 
           <div className="titleDiv">
             <h1>Puissance 4</h1>
