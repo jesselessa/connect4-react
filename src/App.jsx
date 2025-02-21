@@ -11,6 +11,7 @@ import "./App.css";
 // COMPONENTS
 import Row from "./components/Row.jsx";
 import Rules from "./components/Rules.jsx";
+import Speaker from "./components/Speaker.jsx";
 
 class App extends React.Component {
   constructor() {
@@ -204,6 +205,9 @@ class App extends React.Component {
         <Rules />
 
         <div className="titleAndBoard">
+          {/* Music on/off */}
+          <Speaker />
+
           <div className="titleDiv">
             <h1>Puissance 4</h1>
           </div>

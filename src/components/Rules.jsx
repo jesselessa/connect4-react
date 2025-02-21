@@ -6,7 +6,7 @@
 
 // REACT
 import React from "react";
-// IMAGES
+// IMAGE
 import children from "../assets/images/children.png";
 
 class Rules extends React.Component {
