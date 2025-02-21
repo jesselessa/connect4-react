@@ -9,6 +9,7 @@ This project is an implementation of the well-known 'Connect 4' game.
 - [Screenshot](#screenshot)
 - [Main features](#main-features)
 - [Game rules](#game-rules)
+- [Musical credits](#musical-credits)
 - [Run the project locally](#run-the-project-locally)
 - [Getting started with Vite](#getting-started-with-vite)
 - [Contributing](#contributing)
@@ -43,6 +44,10 @@ It uses Class components (before React 16.8, it was the only way to track state 
 - The game ends when there are four tokens lined up in a row (either horizontally, vertically, or diagonally) or a stalemate.
 - Click on the 'Reset' button to start a new game.
 - The starter of the previous game goes second on the next game.
+
+## Musical credits
+
+- Backgroud music : ['80's Music - Electric Dreams 2.0' by Tech_Oasis](https://pixabay.com/fr/music/synthwave-80x27s-music-electric-dreams-20-211957/) (License : Pixabay Content License)
 
 ## Run the project locally
 
