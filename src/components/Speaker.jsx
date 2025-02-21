@@ -1,7 +1,7 @@
 // REACT
 import React, { Component, createRef } from "react";
 // AUDIO AND IMAGES
-import bgMusic from "../assets/audio/martian-131602.mp3";
+import bgMusic from "../assets/audio/80s-music-electric-dreams.mp3";
 import soundOn from "../assets/images/sound-on.png";
 import soundOff from "../assets/images/sound-off.png";
 
