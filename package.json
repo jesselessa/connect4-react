@@ -6,7 +6,6 @@
   "homepage": "https://jesselessa.github.io/connect4-react",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "deploy": "vite build && gh-pages -d dist"
