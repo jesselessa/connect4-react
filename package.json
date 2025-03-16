@@ -1,14 +1,14 @@
 {
   "name": "connect4-react",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
-  "homepage": "https://jesselessa.github.io/connect4-react",
+  "homepage": "https://connect4.jesselessa.dev",
   "scripts": {
     "dev": "vite",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist"
+    "build": "vite build"
   },
   "dependencies": {
     "react": "^18.3.1",
