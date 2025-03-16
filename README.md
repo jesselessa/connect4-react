@@ -18,7 +18,7 @@ This project is an implementation of the well-known 'Connect 4' game.
 
 ## Demo
 
-You can play the game [here](https://jesselessa.github.io/connect4-react).
+You can play the game [here](https://connect4.jesselessa.dev).
 
 ## Stack
 
