@@ -13,8 +13,8 @@ import Row from "./components/Row.jsx";
 import Rules from "./components/Rules.jsx";
 import Speaker from "./components/Speaker.jsx";
 // AUDIO
-import winner from "./assets/winning.mp3";
-import drawOrFailure from "./assets/draw-or-failure.mp3";
+import winner from "./audio/winning.mp3";
+import drawOrFailure from "./audio/draw-or-failure.mp3";
 
 class App extends React.Component {
   constructor() {
@@ -95,7 +95,7 @@ class App extends React.Component {
       this.stopBackgroundMusic();
       this.playSound(drawOrFailure);
       this.setState({
-        message: "Game over. Click on reset button to start a new game.",
+        message: "Click on reset button to start a new game.",
       });
     }
   }
