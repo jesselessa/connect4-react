@@ -1,10 +1,10 @@
 // REACT
 import React, { createRef } from "react";
 // AUDIO
-import bgMusic from "../audio/80s-music-electric-dreams.mp3";
+import bgMusic from "../assets/audio/80s-music-electric-dreams.mp3";
 //IMAGES
-import soundOn from "../images/sound-on.png";
-import soundOff from "../images/sound-off.png";
+import soundOn from "../assets/images/sound-on.png";
+import soundOff from "../assets/images/sound-off.png";
 
 class Speaker extends React.Component {
   constructor(props) {
