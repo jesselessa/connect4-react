@@ -204,7 +204,7 @@ h1 {
     -0.1rem 0.1rem 0 rgb(255, 255, 255);
 }
 
-/* End game animation */
+/* End game animated text */
 .animated {
   animation: 2s message ease infinite;
 }
@@ -225,7 +225,7 @@ h1 {
   }
   25% {
     color: #f15930;
-    transform: scale(1.3);
+    transform: scale(1.2);
     opacity: 1;
     text-shadow:
       0.2rem 0 0 rgb(255, 255, 255),
@@ -252,8 +252,7 @@ h1 {
       -0.1rem 0.1rem 0 #f15930;
   }
   75% {
-    /* Animate nothing to add pause at the end of animation */
-    transform: scale(1.3);
+    transform: scale(1.2);
     opacity: 1;
     text-shadow:
       2px 0 0 #f15930,
@@ -296,33 +295,58 @@ table {
   cursor: pointer;
   opacity: 0.9;
 }
-.white {
-  height: 6rem;
-  width: 6rem;
-  background-color: white;
-  border-radius: 50%;
-}
-.red {
-  height: 6rem;
-  width: 6rem;
-  background-color: #f15930;
-  border-radius: 50%;
-  transition: background-color 0.5s;
-}
+.white,
+.red,
 .yellow {
   height: 6rem;
   width: 6rem;
-  background-color: #ffd700;
   border-radius: 50%;
+}
+
+.white {
+  background-color: white;
+}
+.red {
+  background-color: #f15930;
   transition: background-color 0.5s;
+}
+.yellow {
+  background-color: #ffd700;
+  transition: background-color 0.5s;
+}
+
+/* --- Winning Combination Styles --- */
+/*! The class '.orange' below is added dynamically to the token (div red or yellow) */
+.orange {
+  background-color: #ff9800 !important; /* Force orange on red or yellow */
+  border: 3px solid white;
+  box-shadow: 0 0 20px #ff9800;
+  transform: scale(1.1);
+  z-index: 10;
+  animation: win-pulse 0.8s infinite alternate;
+}
+@keyframes win-pulse {
+  from {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #ff9800;
+  }
+  to {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #ffcc80;
+  }
+}
+/* Darken other tokens slightly when the game is over to make the winning line stand out */
+table:has(.orange) .cell:not(:has(.orange)) {
+  opacity: 0.6;
+  filter: grayscale(30%);
 }
 
 /* Reset Button */
 .reset-btn {
   background-color: #f15930;
   color: white;
-  height: 40px;
-  width: 120px;
+  height: 50px;
+  width: 130px;
   font-weight: bold;
   font-size: 2rem;
   border-radius: 0.5rem;
@@ -342,8 +366,8 @@ table {
   cursor: pointer;
 }
 #toggle-music {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
 }
 figcaption {
   font-size: 1.6rem;
@@ -367,11 +391,22 @@ figcaption {
     font-size: 5rem;
   }
   .message {
+    max-width: 80%;
     font-size: 2.5rem;
   }
-  .table {
-    width: 100%;
+  .cell {
+    height: 5.5rem;
+    width: 5.5rem;
   }
+  .white,
+  .red,
+  .yellow {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
   .cell {
     height: 4.5rem;
     width: 4.5rem;
@@ -379,12 +414,15 @@ figcaption {
   .white,
   .red,
   .yellow {
-    max-width: 3.5rem;
+    width: 3.5rem;
     height: 3.5rem;
+  }
+  .message {
+    font-size: 2.5rem;
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 320px) {
   .cell {
     height: 4.2rem;
     width: 4.2rem;
@@ -395,23 +433,14 @@ figcaption {
     width: 3.2rem;
     height: 3.2rem;
   }
-}
-@media only screen and (max-width: 374px) {
-  .cell {
-    height: 3.5rem;
-    width: 3.5rem;
-  }
-  .white,
-  .red,
-  .yellow {
-    width: 2.5rem;
-    height: 2.5rem;
+  .message {
+    font-size: 2.2rem;
   }
   #toggle {
     top: 10px;
   }
   #toggle-music {
-    width: 32px;
-    height: 32px;
+    width: 54px;
+    height: 54px;
   }
 }

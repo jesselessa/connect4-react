@@ -28,6 +28,7 @@ class App extends React.Component {
       gameOver: false,
       message: "",
       isVsCPU: true, // Computer mode by default ('CPU' for Central Processing Unit)
+      winningCombination: [], // Coordinates of winning tokens
     };
 
     // Speaker reference
@@ -48,7 +49,8 @@ class App extends React.Component {
       board: this.createEmptyBoard(),
       currentPlayer: playerStarting,
       gameOver: false,
-      message: playerStarting === null ? "Veuillez sélectionner qui commence." : "",
+      message: playerStarting === null ? "Sélectionnez le premier joueur." : "",
+      winningCombination: [],
     });
   }
 
@@ -106,7 +108,7 @@ class App extends React.Component {
   }
   // Check if a specific player would win by playing in a given column
   checkWinningMove(board, column, player) {
-    // Create a deep copy of the board to simulate the move safely (we don't want AI to modify the actual game state during its reasoning)
+    // Create a deep copy of the board to simulate the move safely (we don't want our AI to modify the actual game state during its reasoning)
     const boardCopy = board.map(row => [...row]);
 
     // Simulate the token falling in the column
@@ -117,13 +119,17 @@ class App extends React.Component {
       }
     }
 
-    // Use our existing logic to see if this move results in a win
-    return (
-      this.checkVerticalMoves(boardCopy) === player ||
-      this.checkHorizontalMoves(boardCopy) === player ||
-      this.checkRightDiagonalMoves(boardCopy) === player ||
-      this.checkLeftDiagonalMoves(boardCopy) === player
-    );
+    // Capture the results of each check
+    const vMove = this.checkVerticalMoves(boardCopy);
+    const hMove = this.checkHorizontalMoves(boardCopy);
+    const rdMove = this.checkRightDiagonalMoves(boardCopy);
+    const ldMove = this.checkLeftDiagonalMoves(boardCopy);
+
+    // We use checkAllMoves which already centralizes all checks
+    const result = this.checkAllMoves(boardCopy);
+
+    // Then, we check if the result is an object and if the winner is the correct player
+    return result && typeof result === "object" && result.winner === player;
   }
 
   // Set change of turn : if current player is player1, change to player2 and vice versa
@@ -168,12 +174,18 @@ class App extends React.Component {
       // Check board status after the move
       let result = this.checkAllMoves(board);
 
-      if (result === this.state.player1 || result === this.state.player2) {
-        // Define final message based on who won
-        const msg = `${result === this.state.player1 ? "Vous avez gagné" : "Vous avez perdu"} !!!`;
+      // Check if result exists AND if its winner corresponds to a player
+      if (result && (result.winner === this.state.player1 || result.winner === this.state.player2)) {
+        // Get winner for custom message
+        const winnerPlayer = result.winner;
+        const msg = `${winnerPlayer === this.state.player1 ? "Vous avez gagné" : "Vous avez perdu"} !!!`;
+
+        // Store the winning combination coordinates in the state to highlight them later in Cell
+        this.setState({ winningCombination: result.coords });
+
         this.endGame(board, msg, winner);
       } else if (result === "draw") {
-        this.endGame(board, "Égalité.", drawOrFailure);
+        this.endGame(board, "Egalité.", drawOrFailure);
       } else {
         this.setState({ board, currentPlayer: this.changePlayer(), message: "" });
       }
@@ -211,9 +223,12 @@ class App extends React.Component {
             board[r][c] === board[r - 1][c] &&
             board[r][c] === board[r - 2][c] &&
             board[r][c] === board[r - 3][c]
-          ) {
-            return board[r][c];
-          }
+          )
+            // Return player and the coordinates of the 4 tokens
+            return {
+              winner: board[r][c],
+              coords: [[r, c], [r - 1, c], [r - 2, c], [r - 3, c]]
+            };
         }
       }
     }
@@ -229,7 +244,10 @@ class App extends React.Component {
             board[r][c] === board[r][c + 2] &&
             board[r][c] === board[r][c + 3]
           ) {
-            return board[r][c];
+            return {
+              winner: board[r][c],
+              coords: [[r, c], [r, c + 1], [r, c + 2], [r, c + 3]]
+            };
           }
         }
       }
@@ -246,7 +264,10 @@ class App extends React.Component {
             board[r][c] === board[r - 2][c + 2] &&
             board[r][c] === board[r - 3][c + 3]
           ) {
-            return board[r][c];
+            return {
+              winner: board[r][c],
+              coords: [[r, c], [r - 1, c + 1], [r - 2, c + 2], [r - 3, c + 3]]
+            };
           }
         }
       }
@@ -263,7 +284,10 @@ class App extends React.Component {
             board[r][c] === board[r - 2][c - 2] &&
             board[r][c] === board[r - 3][c - 3]
           ) {
-            return board[r][c];
+            return {
+              winner: board[r][c],
+              coords: [[r, c], [r - 1, c - 1], [r - 2, c - 2], [r - 3, c - 3]]
+            };
           }
         }
       }
@@ -290,7 +314,7 @@ class App extends React.Component {
       this.checkLeftDiagonalMoves(board) ||
       this.checkHorizontalMoves(board) ||
       this.checkDraw(board)
-    );
+    ) || null; // Return 'null' if no win or draw
   }
   //? Explanation: The checkAllMoves function consolidates the results of all individual move-checking functions (vertical, horizontal, right diagonal, left diagonal, and draw). It sequentially calls each of these functions and returns the result of the first one that indicates a win or a draw. If none of the functions find a winning condition or a draw, it returns undefined, indicating that the game is still in progress.
 
@@ -326,7 +350,12 @@ class App extends React.Component {
               <tbody>
                 {/* All rows mapping to get the Row component */}
                 {this.state.board.map((row, i) => (
-                  <Row key={i} row={row} play={this.play} />
+                  <Row
+                    key={i}
+                    row={row}
+                    rowIndex={i}
+                    play={this.play} winningCombination={this.state.winningCombination}
+                  />
                 ))}
               </tbody>
             </table>

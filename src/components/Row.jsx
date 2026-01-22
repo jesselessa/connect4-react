@@ -11,12 +11,19 @@ import Cell from "./Cell.jsx";
 
 class Row extends React.Component {
   render() {
-    const { row, play } = this.props;
+    const { row, play, rowIndex, winningCombination } = this.props;
     return (
       <tr>
-        {/* ALL CELLS MAPPING TO GET THE CELL COMPONENT */}
+        {/* All cells mapping to get the Cell component */}
         {row.map((cell, i) => (
-          <Cell key={i} value={cell} columnIndex={i} play={play} />
+          <Cell
+            key={i}
+            value={cell}
+            columnIndex={i}
+            rowIndex={rowIndex}
+            play={play}
+            winningCombination={winningCombination}
+          />
         ))}
       </tr>
     );

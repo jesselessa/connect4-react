@@ -9,15 +9,21 @@ import React from "react";
 
 class Cell extends React.Component {
   render() {
-    const { value, columnIndex, play } = this.props;
+    const { value, columnIndex, rowIndex, play, winningCombination } = this.props;
 
-    // Change cell color based on player value
+    // 1. Change cell color based on player value
     let color = "white"; // Default empty cell
     if (value === 1) {
       color = "red"; // Player 1 (Human)
     } else if (value === 2) {
       color = "yellow"; // Player 2 (AI)
     }
+
+    // 2. Check if this cell is part of the winning combination
+    // .some() returns 'true' if a pair [r, c] matches [rowIndex, columnIndex]
+    const isWinningCell = winningCombination.some(
+      (coord) => coord[0] === rowIndex && coord[1] === columnIndex
+    );
 
     return (
       <td>
@@ -28,7 +34,8 @@ class Cell extends React.Component {
             play(columnIndex);
           }}
         >
-          <div className={color}></div>
+          {/* Si isWinningCell est vrai, on ajoute la classe 'orange', sinon rien */}
+          <div className={`${color} ${isWinningCell ? "orange" : ""}`}></div>
         </div>
       </td>
     );
