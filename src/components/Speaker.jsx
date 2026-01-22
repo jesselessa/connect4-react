@@ -1,8 +1,13 @@
-// REACT
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//                          SPEAKER.JSX                           //
+//                      LINKED TO APP.JSX                         //
+//                 TOGGLES BACKGROUND MUSIC ON/OFF                 //
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+// React
 import React, { createRef } from "react";
-// AUDIO
+// Audio & Images
 import bgMusic from "../assets/audio/80s-music-electric-dreams.mp3";
-//IMAGES
 import soundOn from "../assets/images/sound-on.png";
 import soundOff from "../assets/images/sound-off.png";
 
@@ -18,14 +23,15 @@ class Speaker extends React.Component {
     };
   }
 
-  // Update image caption when component mounts
+  // WHEN COMPONENT MOUNTS
   componentDidMount() {
+    // Update image caption
     this.updateCaption();
     // Add event listener for window resize
     window.addEventListener("resize", this.updateCaption);
   }
 
-  // Remove event listener when component unmounts
+  // WHEN COMPONENT UNMOUNTS
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateCaption);
   }

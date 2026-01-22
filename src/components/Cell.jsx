@@ -4,24 +4,24 @@
 //          DEFINES PLAYER'S CELL COLOR & MAKE IT CLICKABLE       //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-// REACT
+// React
 import React from "react";
 
 class Cell extends React.Component {
   render() {
     const { value, columnIndex, play } = this.props;
 
-    // CHANGE CELL COLOR DEPENDING ON THE CURRENT PLAYER
-    let color = "white"; // DEFAULT
+    // Change cell color based on player value
+    let color = "white"; // Default empty cell
     if (value === 1) {
-      color = "red"; // PLAYER 1
+      color = "red"; // Player 1 (Human)
     } else if (value === 2) {
-      color = "yellow"; // PLAYER 2
+      color = "yellow"; // Player 2 (AI)
     }
 
     return (
       <td>
-        {/* CLICKABLE CELL */}
+        {/* Clickable cell */}
         <div
           className="cell"
           onClick={() => {

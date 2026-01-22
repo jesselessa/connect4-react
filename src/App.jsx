@@ -4,56 +4,60 @@
 //                       MAIN REACT PAGE                          //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-// REACT
+// React
 import React, { createRef } from "react";
-// STYLES
+// Styles
 import "./App.css";
-// COMPONENTS
+// Components
 import Row from "./components/Row.jsx";
 import Rules from "./components/Rules.jsx";
 import Speaker from "./components/Speaker.jsx";
-// AUDIO
+// Audio
 import winner from "./assets/audio/winning.mp3";
 import drawOrFailure from "./assets/audio/draw-or-failure.mp3";
 
 class App extends React.Component {
   constructor() {
     super();
-    // STATE
+    // Initial state
     this.state = {
+      board: [],
       player1: 1, // Human
       player2: 2, // Computer (AI)
       currentPlayer: null,
-      board: [],
       gameOver: false,
       message: "",
-      isVsCPU: true, // Computer mode by default
+      isVsCPU: true, // Computer mode by default - 'CPU' for Central Processing Unit
     };
 
-    // SPEAKER REFERENCE
+    // Speaker reference
     this.speakerRef = createRef();
 
-    // BINDS
+    // Bindings
     this.play = this.play.bind(this);
   }
 
-  // INITIATE NEW GAME
-  initBoard(playerStarts = 1) {
-    // CREATE A BLANK 6x7 BOARD
-    const board = Array(6)
-      .fill(null)
-      .map(() => Array(7).fill(null));
-    // console.log(board);
+  // Create an empty board (6x7)
+  createEmptyBoard() {
+    return Array(6).fill(null).map(() => Array(7).fill(null));
+  }
 
+  // Initialize game board and set starting player
+  initBoard(playerStarting = null) {
     this.setState({
-      board,
-      currentPlayer: playerStarts,
-      // currentPlayer: this.state.player1, // Old version
+      board: this.createEmptyBoard(),
+      currentPlayer: playerStarting,
       gameOver: false,
-      message: "",
+      message: playerStarting === null ? "Veuillez sélectionner qui commence." : "",
     });
   }
 
+  // WHEN COMPONENT MOUNTS
+  componentDidMount() {
+    this.initBoard();
+  }
+
+  // AFTER EVERY UPDATE, CHECK WHOSE TURN TO PLAY
   componentDidUpdate(prevProps, prevState) {
     // If it's the CPU's turn AND the CPU mode is active AND the game is not over
     if (
@@ -61,12 +65,12 @@ class App extends React.Component {
       this.state.currentPlayer === this.state.player2 &&
       !this.state.gameOver
     ) {
-      // We add a small delay to make it feel natural (500ms)
-      setTimeout(() => this.cpuPlay(), 500);
+      // Add a small delay to make it feel natural (1000ms = 1s)
+      setTimeout(() => this.cpuPlay(), 1000);
     }
   }
 
-  // CREATE IA AND CHECK WHOSE TURN IT IS TO PLAY
+  // Create CPU move (AI logic)
   cpuPlay() {
     const { board } = this.state;
     const availableColumns = [];
@@ -87,17 +91,35 @@ class App extends React.Component {
     }
   }
 
-  // CURRENT PLAYER -> NEXT PLAYER
+  // Set change of turn : if current player is player1, change to player2 and vice versa
   changePlayer() {
     return this.state.currentPlayer === this.state.player1
       ? this.state.player2
       : this.state.player1;
   }
 
-  // EVERY TIME YOU CLICK ON A CELL, FUNCTION PLAY IS CALLED
+  // Centralize end game, sounds and final message
+  endGame(board, resultMessage, soundFile) {
+    this.stopBackgroundMusic();
+    this.playSound(soundFile);
+    this.setState({
+      board,
+      gameOver: true,
+      message: resultMessage,
+    });
+  }
+
+  // GAME LOGIC: Every time you click on a cell, function is called
   play(c) {
-    // c = column index & r = row index
-    // CHECK IF GAME IS OVER OR NOT
+    // Note: c = column index & r = row index
+
+    // 1. Check if a mode has been selected ; if not, display a message
+    if (this.state.currentPlayer === null) {
+      this.setState({ message: "Choisissez d'abord qui commence !" });
+      return;
+    }
+
+    // 2. GAME IN PROGRESS: Proceed with the next move
     if (!this.state.gameOver) {
       let board = this.state.board;
 
@@ -108,53 +130,48 @@ class App extends React.Component {
         }
       }
 
-      // CHECK BOARD STATUS
+      // Check board status after the move
       let result = this.checkAllMoves(board);
 
       if (result === this.state.player1 || result === this.state.player2) {
-        this.stopBackgroundMusic();
-        this.playSound(winner);
-        this.setState({
-          board,
-          gameOver: true,
-          message: `Player ${result} wins !!!`,
-        });
+        // Define final message based on who won
+        const msg = `${result === this.state.player1 ? "Vous avez gagné" : "Vous avez perdu"} !!!`;
+        this.endGame(board, msg, winner);
       } else if (result === "draw") {
-        this.stopBackgroundMusic();
-        this.playSound(drawOrFailure);
-        this.setState({ board, gameOver: true, message: "Draw game." });
+        this.endGame(board, "Égalité.", drawOrFailure);
       } else {
-        this.setState({ board, currentPlayer: this.changePlayer() });
+        this.setState({ board, currentPlayer: this.changePlayer(), message: "" });
       }
-    } else {
+    }
+
+    // 3. GAME OVER: Prompt to reset the game
+    else {
       this.stopBackgroundMusic();
       this.playSound(drawOrFailure);
       this.setState({
-        message: "Click on reset button to start a new game.",
+        message: "Cliquez sur 'RESET' pour commencer une nouvelle partie.",
       });
     }
   }
 
-  // STOP BACKGROUND MUSIC VIA SPEAKER COMPONENT
+  // Stop background music via Speaker component
   stopBackgroundMusic() {
     if (this.speakerRef.current) {
       this.speakerRef.current.stopMusic();
     }
   }
 
-  // PLAY SOUND EFFECTS
+  // Play sound effect
   playSound(audioFile) {
     const audio = new Audio(audioFile);
     audio.play();
   }
 
-  // CHECK PLAYER MOVES
+  // Check player moves
   checkVerticalMoves(board) {
-    // CHECK ONLY IF ROW IS 3 OR GREATER
     for (let r = 3; r < 6; r++) {
       for (let c = 0; c < 7; c++) {
         if (board[r][c]) {
-          // CHECK IF OUR TOKENS ARE ALL IN THE SAME COLUMN
           if (
             board[r][c] === board[r - 1][c] &&
             board[r][c] === board[r - 2][c] &&
@@ -166,9 +183,9 @@ class App extends React.Component {
       }
     }
   }
+  //? Explanation: The checkVerticalMoves function iterates through the game board starting from row index 3 to 5 (the bottom three rows) and checks each column for four consecutive identical non-null values (representing player moves). If such a sequence is found, it returns the value (player identifier) of the winning player.
 
   checkHorizontalMoves(board) {
-    // CHECK ONLY IF COLUMN IS 3 OR LESS
     for (let r = 0; r < 6; r++) {
       for (let c = 0; c < 4; c++) {
         if (board[r][c]) {
@@ -183,9 +200,9 @@ class App extends React.Component {
       }
     }
   }
+  //? Explanation: The checkHorizontalMoves function scans each row of the game board from row index 0 to 5 and checks for four consecutive identical non-null values in each row. It iterates through columns 0 to 3 (the first four columns) to ensure it can check the next three columns for a potential horizontal win. If it finds such a sequence, it returns the value (player identifier) of the winning player.
 
   checkRightDiagonalMoves(board) {
-    // CHECK ONLY IF ROW IS 3 OR GREATER && COLUMN IS 3 OR LESS
     for (let r = 3; r < 6; r++) {
       for (let c = 0; c < 4; c++) {
         if (board[r][c]) {
@@ -200,9 +217,9 @@ class App extends React.Component {
       }
     }
   }
+  //? Explanation: The checkRightDiagonalMoves function checks for diagonal wins that slope from the bottom-left to the top-right. It iterates through the board starting from row index 3 to 5 and column index 0 to 3, checking for four consecutive identical non-null values in a right diagonal direction. If such a sequence is found, it returns the value (player identifier) of the winning player.
 
   checkLeftDiagonalMoves(board) {
-    // CHECK ONLY IF ROW IS 3 OR GREATER && COLUMN IS 3 OR GREATER
     for (let r = 3; r < 6; r++) {
       for (let c = 3; c < 7; c++) {
         if (board[r][c]) {
@@ -217,6 +234,7 @@ class App extends React.Component {
       }
     }
   }
+  //? Explanation: The checkLeftDiagonalMoves function checks for diagonal wins that slope from the bottom-right to the top-left. It iterates through the board starting from row index 3 to 5 and column index 3 to 6, checking for four consecutive identical non-null values in a left diagonal direction. If such a sequence is found, it returns the value (player identifier) of the winning player.
 
   checkDraw(board) {
     for (let r = 0; r < 6; r++) {
@@ -228,6 +246,7 @@ class App extends React.Component {
     }
     return "draw";
   }
+  //? Explanation: The checkDraw function checks if the game board is completely filled without any empty cells (null values). It iterates through each cell of the board, and if it finds any empty cell, it returns null, indicating that the game is still ongoing. If no empty cells are found after checking the entire board, it returns "draw", indicating that the game has ended in a tie.
 
   checkAllMoves(board) {
     return (
@@ -238,15 +257,12 @@ class App extends React.Component {
       this.checkDraw(board)
     );
   }
-
-  // INITIATE BOARD WHEN FIRST APPEARS ON SCREEN
-  componentDidMount() {
-    this.initBoard();
-  }
+  //? Explanation: The checkAllMoves function consolidates the results of all individual move-checking functions (vertical, horizontal, right diagonal, left diagonal, and draw). It sequentially calls each of these functions and returns the result of the first one that indicates a win or a draw. If none of the functions find a winning condition or a draw, it returns undefined, indicating that the game is still in progress.
 
   render() {
+    const messageClass = this.state.gameOver ? "message animated" : "message";
+
     return (
-      // MAIN BLOCK
       <div className="App">
         <Rules />
 
@@ -259,32 +275,33 @@ class App extends React.Component {
           </div>
 
           <div className="boardAndButton">
-            {/* MODE SELECTOR */}
-            <div className="mode-selector">
-              <button onClick={() => this.initBoard(1)}>Je commence</button>
-              <button onClick={() => this.initBoard(2)}>L'IA commence</button>
-            </div>
+            {/* 1. MODE SELECTOR: Only if no player is selected (game not started) */}
+            {this.state.currentPlayer === null && (
+              <div className="mode-selector">
+                <button onClick={() => this.initBoard(1)}>Je commence</button>
+                <button onClick={() => this.initBoard(2)}>L'IA commence</button>
+              </div>
+            )}
 
-            {/* MESSAGE */}
-            <p className="message">{this.state.message}</p>
-            {/* BOARD */}
+            {/* 2. MESSAGE */}
+            <p className={messageClass}>{this.state.message}</p>
+
+            {/* 3. BOARD */}
             <table>
               <tbody>
-                {/* ALL ROWS MAPPING TO GET THE ROW COMPONENT */}
+                {/* All rows mapping to get the Row component */}
                 {this.state.board.map((row, i) => (
                   <Row key={i} row={row} play={this.play} />
                 ))}
               </tbody>
             </table>
-            {/* RESET BUTTON */}
-            <button
-              className="reset-btn"
-              onClick={() => {
-                this.initBoard();
-              }}
-            >
-              RESET
-            </button>
+
+            {/* 4. RESET BUTTON: Only if a player is selected (game in progress) */}
+            {this.state.currentPlayer !== null && (
+              <button className="reset-btn" onClick={() => this.initBoard()}>
+                RESET
+              </button>
+            )}
           </div>
         </div>
       </div>

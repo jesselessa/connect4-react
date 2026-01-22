@@ -4,9 +4,9 @@
 //              DEFINES GAME RULES ON THE LEFT SIDE               //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-// REACT
+// React
 import React from "react";
-// IMAGE
+// Image
 import children from "../assets/images/children.png";
 
 class Rules extends React.Component {

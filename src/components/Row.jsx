@@ -4,9 +4,9 @@
 //                  DEFINES CELLS FOR EVERY ROWS                  //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-// REACT
+// React
 import React from "react";
-// COMPONENT
+// Component
 import Cell from "./Cell.jsx";
 
 class Row extends React.Component {
