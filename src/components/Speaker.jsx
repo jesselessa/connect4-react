@@ -1,7 +1,7 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 //                          SPEAKER.JSX                           //
 //                      LINKED TO APP.JSX                         //
-//                 TOGGLES BACKGROUND MUSIC ON/OFF                 //
+//                 TOGGLES BACKGROUND MUSIC ON/OFF                //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // React
@@ -15,7 +15,8 @@ class Speaker extends React.Component {
   constructor(props) {
     super(props);
     // Create a reference
-    this.audioRef = createRef();
+    this.audioRef = createRef(); // Targets <audio> element => Allows Speaker to access browser functions like play(), pause() or .currentTime = 0
+
     // Initialize states
     this.state = {
       isPlaying: false,

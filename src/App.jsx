@@ -1,5 +1,5 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-//                           APP.JS                               //
+//                           APP.JSX                              //
 //                  WELCOME TO CONNECT4 GAME                      //
 //                       MAIN REACT PAGE                          //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -27,13 +27,13 @@ class App extends React.Component {
       currentPlayer: null,
       gameOver: false,
       message: "",
-      isVsCPU: true, // Computer mode by default - 'CPU' for Central Processing Unit
+      isVsCPU: true, // Computer mode by default ('CPU' for Central Processing Unit)
     };
 
     // Speaker reference
-    this.speakerRef = createRef();
+    this.speakerRef = createRef(); // Targets Speaker component => Allows App to access its methods like stopMusic()
 
-    // Bindings
+    // Bind play function to 'this' (App component)
     this.play = this.play.bind(this);
   }
 
@@ -70,12 +70,12 @@ class App extends React.Component {
     }
   }
 
-  // Create CPU move (AI logic)
+  // Create CPU move (Smart AI logic)
   cpuPlay() {
-    const { board } = this.state;
+    const { board, player1, player2 } = this.state;
     const availableColumns = [];
 
-    // 1. List all available columns
+    // List all available columns
     for (let c = 0; c < 7; c++) {
       if (board[0][c] === null) {
         availableColumns.push(c);
@@ -83,12 +83,47 @@ class App extends React.Component {
     }
 
     if (availableColumns.length > 0) {
-      // 2. Choose a random column (basic AI)
-      const randomColumn = availableColumns[Math.floor(Math.random() * availableColumns.length)];
+      // --- STRATEGY 1: CAN THE AI WIN NOW? ---
+      for (let c of availableColumns) {
+        if (this.checkWinningMove(board, c, player2)) {
+          this.play(c);
+          return; // Move made, exit function
+        }
+      }
 
-      // 3. Play the move
+      // --- STRATEGY 2: MUST THE AI BLOCK THE HUMAN? ---
+      for (let c of availableColumns) {
+        if (this.checkWinningMove(board, c, player1)) {
+          this.play(c);
+          return; // Move made, exit function
+        }
+      }
+
+      // --- STRATEGY 3: RANDOM MOVE (if no immediate win/threat) ---
+      const randomColumn = availableColumns[Math.floor(Math.random() * availableColumns.length)];
       this.play(randomColumn);
     }
+  }
+  // Check if a specific player would win by playing in a given column
+  checkWinningMove(board, column, player) {
+    // Create a deep copy of the board to simulate the move safely (we don't want AI to modify the actual game state during its reasoning)
+    const boardCopy = board.map(row => [...row]);
+
+    // Simulate the token falling in the column
+    for (let r = 5; r >= 0; r--) {
+      if (!boardCopy[r][column]) {
+        boardCopy[r][column] = player;
+        break;
+      }
+    }
+
+    // Use our existing logic to see if this move results in a win
+    return (
+      this.checkVerticalMoves(boardCopy) === player ||
+      this.checkHorizontalMoves(boardCopy) === player ||
+      this.checkRightDiagonalMoves(boardCopy) === player ||
+      this.checkLeftDiagonalMoves(boardCopy) === player
+    );
   }
 
   // Set change of turn : if current player is player1, change to player2 and vice versa
