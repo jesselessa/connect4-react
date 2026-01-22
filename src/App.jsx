@@ -21,12 +21,13 @@ class App extends React.Component {
     super();
     // STATE
     this.state = {
-      player1: 1,
-      player2: 2,
+      player1: 1, // Human
+      player2: 2, // Computer (AI)
       currentPlayer: null,
       board: [],
       gameOver: false,
       message: "",
+      isVsCPU: true, // Computer mode by default
     };
 
     // SPEAKER REFERENCE
@@ -37,7 +38,7 @@ class App extends React.Component {
   }
 
   // INITIATE NEW GAME
-  initBoard() {
+  initBoard(playerStarts = 1) {
     // CREATE A BLANK 6x7 BOARD
     const board = Array(6)
       .fill(null)
@@ -46,10 +47,44 @@ class App extends React.Component {
 
     this.setState({
       board,
-      currentPlayer: this.state.player1,
+      currentPlayer: playerStarts,
+      // currentPlayer: this.state.player1, // Old version
       gameOver: false,
       message: "",
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // If it's the CPU's turn AND the CPU mode is active AND the game is not over
+    if (
+      this.state.isVsCPU &&
+      this.state.currentPlayer === this.state.player2 &&
+      !this.state.gameOver
+    ) {
+      // We add a small delay to make it feel natural (500ms)
+      setTimeout(() => this.cpuPlay(), 500);
+    }
+  }
+
+  // CREATE IA AND CHECK WHOSE TURN IT IS TO PLAY
+  cpuPlay() {
+    const { board } = this.state;
+    const availableColumns = [];
+
+    // 1. List all available columns
+    for (let c = 0; c < 7; c++) {
+      if (board[0][c] === null) {
+        availableColumns.push(c);
+      }
+    }
+
+    if (availableColumns.length > 0) {
+      // 2. Choose a random column (basic AI)
+      const randomColumn = availableColumns[Math.floor(Math.random() * availableColumns.length)];
+
+      // 3. Play the move
+      this.play(randomColumn);
+    }
   }
 
   // CURRENT PLAYER -> NEXT PLAYER
@@ -224,6 +259,12 @@ class App extends React.Component {
           </div>
 
           <div className="boardAndButton">
+            {/* MODE SELECTOR */}
+            <div className="mode-selector">
+              <button onClick={() => this.initBoard(1)}>Je commence</button>
+              <button onClick={() => this.initBoard(2)}>L'IA commence</button>
+            </div>
+
             {/* MESSAGE */}
             <p className="message">{this.state.message}</p>
             {/* BOARD */}
@@ -236,14 +277,14 @@ class App extends React.Component {
               </tbody>
             </table>
             {/* RESET BUTTON */}
-            <div
-              className="button"
+            <button
+              className="reset-btn"
               onClick={() => {
                 this.initBoard();
               }}
             >
               RESET
-            </div>
+            </button>
           </div>
         </div>
       </div>
