@@ -172,7 +172,7 @@ h1 {
 .mode-selector button {
   background-color: teal;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
   border-radius: 0.5rem;
   height: 40px;
@@ -187,7 +187,7 @@ h1 {
   font-weight: 400;
   color: #f15930;
   text-align: center;
-  font-size: 3rem;
+  font-size: 3.5rem;
   margin: 1rem auto 2rem;
   line-height: 1;
   max-width: 100%;
@@ -415,7 +415,7 @@ figcaption {
   }
   .message {
     max-width: 80%;
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
   .cell {
     height: 5.5rem;
@@ -441,7 +441,7 @@ figcaption {
     height: 3.5rem;
   }
   .message {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
   }
 }
 
@@ -457,7 +457,7 @@ figcaption {
     height: 3.2rem;
   }
   .message {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
   #toggle {
     top: 10px;
