@@ -41,8 +41,19 @@ class Rules extends React.Component {
             <span>Fin de partie :</span> Si la grille est pleine sans alignement,
             le match est nul. Cliquez sur <span>"Reset"</span> pour retenter votre chance.
           </p>
+
+          <footer>
+            <a href="https://github.com/jesselessa" target="_blank"
+            >
+              <p>
+                &copy; {new Date().getFullYear()} Jessica ELESSA - All rights reserved
+              </p>
+            </a>
+          </footer>
         </div>
-      </aside>
+
+
+      </aside >
     );
   }
 }

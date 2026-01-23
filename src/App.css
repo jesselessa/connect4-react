@@ -125,6 +125,16 @@ button:active {
   height: 0.3rem;
   width: 70%;
 }
+footer {
+  text-align: center;
+  margin-top: auto;
+}
+footer a {
+  color: #2858a1;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
 
 /* Title and board box */
 .titleAndBoard {
