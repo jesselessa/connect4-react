@@ -389,7 +389,7 @@ class App extends React.Component {
                 </button>
 
                 <button className="token-sound-btn" onClick={this.toggleSound}>
-                  {this.state.isSoundEnabled ? "Désactiver le son du jeton" : "Activer le son du jeton"}
+                  {this.state.isSoundEnabled ? "Désactiver le son des jetons" : "Activer le son des jetons"}
                 </button>
               </div>
             )}

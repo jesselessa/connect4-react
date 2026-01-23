@@ -32,30 +32,34 @@ It uses Class components (before React 16.8, it was the only way to track state 
 
 ## Main features
 
-- Automatic detection of each player's turn.
-- Automatic detection of a victory or a stalemate (draw).
-- Reset of the grid to start a new game.
-- Background music.
+- **PvE Mode** : Play against an AI opponent with automated decision-making.
+- **Dynamic Token Animation** : Realistic "drop" effect where tokens fall from the top of the grid to their position.
+- **Visual Feedback** : The winning combination is highlighted with a pulse animation to clearly identify the end of the game.
+- **Immersive Sound Effects** : Specific sounds for token drops, victory, defeat, and draw games.
+- **Responsive Design** : The game board and UI adapt perfectly to mobile, tablet and desktop screens.
+- **Game State Management** : Automatic detection of turns, victories, and stalemates with an easy reset option.
+- **Background Music** : Integrated audio toggle for an enhanced gaming atmosphere.
 
 ## Game Rules
 
-- First, decide which player goes first (player 1 has the red tokens, player 2, the yellow ones). Players must alternate turns.
-- On your turn, drop one of your colored tokens from the top into any of the seven slots.
-- The game ends when there are four tokens lined up in a row (either horizontally, vertically, or diagonally) or a stalemate.
-- Click on the 'Reset' button to start a new game.
-- The starter of the previous game goes second on the next game.
+- **Choose the initial player** : Select the player starting the game.
+- **Turn-based play** : Player 1 (Red tokens) always starts, followed by Player 2 the AI (Yellow tokens).
+- **The Drop** : On your turn, click on a column to drop your colored token. It will fall to the lowest available space in that column.
+- **Objective** : Be the first to line up four of your tokens horizontally, vertically, or diagonally.
+- **Winning & Draw** :
+  - If a player aligns four tokens, those tokens will pulse, and the winner sound will play.
+  - If the grid is full with no winner, the game ends in a stalemate (draw).
+- **Restarting** : Click the 'Reset' button at any time to clear the board. The starter of the previous game will go second in the next round.
 
 ## Musical credits
 
-Licence : Pixabay Content License (Free Use)
+Licence: Pixabay Content License (Free Use)
 
-- Backgroud music : ['80's Music - Electric Dreams 2.0' by Tech_Oasis](https://pixabay.com/fr/music/synthwave-80x27s-music-electric-dreams-20-211957/)
-
-- Token sound : ['Coin Bag Pickup Drop' by ralph.whitehead (Freesound)](https://pixabay.com/fr/sound-effects/films-et-effets-sp%c3%a9ciaux-coin-bag-pickup-drop-94617/)
-
-- Winner sound : ['Winning' by PW23CHECK](https://pixabay.com/fr/sound-effects/winning-218995/)
-
-- Draw game or game over sound : ['failure 1' by Leszek_Szary (Freesound)](https://pixabay.com/fr/sound-effects/failure-1-89170/)
+- **Background Music** : ['80's Music - Electric Dreams 2.0' by Tech_Oasis](https://pixabay.com/fr/music/synthwave-80x27s-music-electric-dreams-20-211957/)
+- **Token Drop Sound** : ['Coin Bag Pickup Drop' by ralph.whitehead](https://pixabay.com/fr/sound-effects/films-et-effets-sp%c3%a9ciaux-coin-bag-pickup-drop-94617/)
+- **Victory Sound** : ['Winning' by PW23CHECK](https://pixabay.com/fr/sound-effects/winning-218995/)
+- **Game Over / Defeat Sound** : ['Failure 1' by Leszek_Szary](https://pixabay.com/fr/sound-effects/failure-1-89170/)
+- **Stalemate Sound** : ['Short Mission Accomplished' (Pixabay)](https://pixabay.com/fr/sound-effects/)
 
 ## Run the project locally
 
@@ -63,8 +67,8 @@ Licence : Pixabay Content License (Free Use)
 2. Clone the repository : `git clone https://github.com/jesselessa/connect4-react.git`
 3. Navigate to the project directory : `cd connect4-react`
 4. Install dependencies required in the project : `npm install`
-5. Run the application in development mode : `npm start`
-6. Open http://localhost:3000 in your preferred browser to view the development server.
+5. Run the application in development mode : `npm run dev`
+6. Open http://localhost:5173 in your preferred browser to view the development server.
 
 ## Getting Started with Vite
 
