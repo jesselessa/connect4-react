@@ -42,18 +42,24 @@ It uses Class components (before React 16.8, it was the only way to track state 
 
 ## Game Rules
 
-- **Choose the initial player** : Select the player starting the game.
-- **Turn-based play** : Player 1 (Red tokens) always starts, followed by Player 2 the AI (Yellow tokens).
-- **The Drop** : On your turn, click on a column to drop your colored token. It will fall to the lowest available space in that column.
-- **Objective** : Be the first to line up four of your tokens horizontally, vertically, or diagonally.
+Challenge our computer opponent in this classic strategy game ! Here is how it works :
+
+- **Man vs Machine** : This project is designed as a single-player experience where you face off against an AI.
+- **Choose the Starter** : You decide who takes the first shot ! Select either "Player" or "AI" to start the game.
+- **Your Colors** : 
+  - **You** : Play with the **Red** tokens.
+  - **AI** : Plays with the **Yellow** tokens.
+- **The Drop** : On your turn, click on any column to drop your token. The token will realistically fall to the lowest available space in that column.
+- **The Objective** : Be the first to align **four** of your tokens in a row (horizontally, vertically or diagonally).
 - **Winning & Draw** :
-  - If a player aligns four tokens, those tokens will pulse, and the winner sound will play.
-  - If the grid is full with no winner, the game ends in a stalemate (draw).
-- **Restarting** : Click the 'Reset' button at any time to clear the board. The starter of the previous game will go second in the next round.
+  - **Victory** : If you align four tokens, they will **highlight and pulse** with a victory sound.
+  - **Defeat** : If the AI beats you, a failure sound will play.
+  - **Stalemate** : If the grid is full with no winner, the game ends in a draw.
+- **Restarting** : Use the **'Reset'** button at any time to clear the board and try a new strategy against the computer.
 
 ## Musical credits
 
-Licence: Pixabay Content License (Free Use)
+Licence : Pixabay Content License (Free Use)
 
 - **Background Music** : ['80's Music - Electric Dreams 2.0' by Tech_Oasis](https://pixabay.com/fr/music/synthwave-80x27s-music-electric-dreams-20-211957/)
 - **Token Drop Sound** : ['Coin Bag Pickup Drop' by ralph.whitehead](https://pixabay.com/fr/sound-effects/films-et-effets-sp%c3%a9ciaux-coin-bag-pickup-drop-94617/)
