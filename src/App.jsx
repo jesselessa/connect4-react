@@ -148,7 +148,9 @@ class App extends React.Component {
   // Centralize end game, sounds and final message
   endGame(board, resultMessage, soundFile) {
     this.stopBackgroundMusic();
-    this.playSound(soundFile);
+    // Play the correct sound based on the result message
+    const soundToPlay = resultMessage.includes("perdu") ? drawOrFailure : soundFile;
+    this.playSound(soundToPlay);
     this.setState({
       board,
       gameOver: true,
