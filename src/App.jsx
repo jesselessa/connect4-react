@@ -27,8 +27,9 @@ class App extends React.Component {
       currentPlayer: null,
       gameOver: false,
       message: "",
-      isVsCPU: true, // Computer mode by default ('CPU' for Central Processing Unit)
+      isVsCPU: true, // Computer mode by default 
       winningCombination: [], // Coordinates of winning tokens
+      lastMove: null, // Last played position for animation
     };
 
     // Speaker reference
@@ -51,6 +52,7 @@ class App extends React.Component {
       gameOver: false,
       message: playerStarting === null ? "Sélectionnez le premier joueur." : "",
       winningCombination: [],
+      lastMove: null, // Reset last move
     });
   }
 
@@ -85,7 +87,7 @@ class App extends React.Component {
     }
 
     if (availableColumns.length > 0) {
-      // --- STRATEGY 1: CAN THE AI WIN NOW? ---
+      // --- STRATEGY 1: CAN THE AI WIN NOW ? ---
       for (let c of availableColumns) {
         if (this.checkWinningMove(board, c, player2)) {
           this.play(c);
@@ -93,7 +95,7 @@ class App extends React.Component {
         }
       }
 
-      // --- STRATEGY 2: MUST THE AI BLOCK THE HUMAN? ---
+      // --- STRATEGY 2: MUST THE AI BLOCK THE HUMAN ? ---
       for (let c of availableColumns) {
         if (this.checkWinningMove(board, c, player1)) {
           this.play(c);
@@ -108,7 +110,8 @@ class App extends React.Component {
   }
   // Check if a specific player would win by playing in a given column
   checkWinningMove(board, column, player) {
-    // Create a deep copy of the board to simulate the move safely (we don't want our AI to modify the actual game state during its reasoning)
+    // Create a deep copy of the board to simulate the move safely 
+    //! ⚠️ We don't want our AI to modify the actual game state during its reasoning
     const boardCopy = board.map(row => [...row]);
 
     // Simulate the token falling in the column
@@ -132,7 +135,7 @@ class App extends React.Component {
     return result && typeof result === "object" && result.winner === player;
   }
 
-  // Set change of turn : if current player is player1, change to player2 and vice versa
+  // Set change of player : if current player is player1, change to player2 and vice versa
   changePlayer() {
     return this.state.currentPlayer === this.state.player1
       ? this.state.player2
@@ -150,11 +153,11 @@ class App extends React.Component {
     });
   }
 
-  // GAME LOGIC: Every time you click on a cell, function is called
+  // GAME LOGIC: Every time we click on a cell, function 'play' is called
   play(c) {
     // Note: c = column index & r = row index
 
-    // 1. Check if a mode has been selected ; if not, display a message
+    // 1. MODE SELECTOR: Check if a mode has been selected ; if not, display a message
     if (this.state.currentPlayer === null) {
       this.setState({ message: "Choisissez d'abord qui commence !" });
       return;
@@ -167,6 +170,7 @@ class App extends React.Component {
       for (let r = 5; r >= 0; r--) {
         if (!board[r][c]) {
           board[r][c] = this.state.currentPlayer;
+          this.setState({ lastMove: { row: r, column: c } }); // Enregistrer la dernière position jouée
           break;
         }
       }
@@ -183,6 +187,7 @@ class App extends React.Component {
         // Store the winning combination coordinates in the state to highlight them later in Cell
         this.setState({ winningCombination: result.coords });
 
+        // Terminate game with the winning message and sound
         this.endGame(board, msg, winner);
       } else if (result === "draw") {
         this.endGame(board, "Egalité.", drawOrFailure);
@@ -196,7 +201,7 @@ class App extends React.Component {
       this.stopBackgroundMusic();
       this.playSound(drawOrFailure);
       this.setState({
-        message: "Cliquez sur 'RESET' pour commencer une nouvelle partie.",
+        message: "Cliquez sur 'Reset' pour commencer une nouvelle partie.",
       });
     }
   }
@@ -319,7 +324,7 @@ class App extends React.Component {
   //? Explanation: The checkAllMoves function consolidates the results of all individual move-checking functions (vertical, horizontal, right diagonal, left diagonal, and draw). It sequentially calls each of these functions and returns the result of the first one that indicates a win or a draw. If none of the functions find a winning condition or a draw, it returns undefined, indicating that the game is still in progress.
 
   render() {
-    const messageClass = this.state.gameOver ? "message animated" : "message";
+    const messageClass = this.state.gameOver ? "message animated-text" : "message";
 
     return (
       <div className="App">
@@ -354,7 +359,9 @@ class App extends React.Component {
                     key={i}
                     row={row}
                     rowIndex={i}
-                    play={this.play} winningCombination={this.state.winningCombination}
+                    play={this.play}
+                    winningCombination={this.state.winningCombination}
+                    lastMove={this.state.lastMove} // Pass last position played
                   />
                 ))}
               </tbody>

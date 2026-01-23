@@ -4,12 +4,10 @@
   box-sizing: border-box;
 }
 
-/* Font-size */
 html {
-  font-size: 62.5%;
+  font-size: 62.5%; /* 1rem = 10px */
 }
 
-/* Font-family by default */
 body {
   font-family: Arial;
   font-size: 1.6rem;
@@ -204,8 +202,8 @@ h1 {
     -0.1rem 0.1rem 0 rgb(255, 255, 255);
 }
 
-/* End game animated text */
-.animated {
+/* Text animation */
+.animated-text {
   animation: 2s message ease infinite;
 }
 @keyframes message {
@@ -280,20 +278,22 @@ h1 {
   }
 }
 
-/* Game board */
+/* --- Board styles --- */
 table {
   border-spacing: 0;
 }
 .cell {
+  position: relative;
   height: 7rem;
   width: 7rem;
-  background-color: #2858a1;
+  background-color: #2858a1; /* Grid has a blue background */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   opacity: 0.9;
+  border: 1px solid #1e3a66;
 }
 .white,
 .red,
@@ -302,21 +302,44 @@ table {
   width: 6rem;
   border-radius: 50%;
 }
-
 .white {
+  position: absolute;
+  top: 10%; /* Center the white circle */
+  left: 10%;
+  width: 80%;
+  height: 80%;
   background-color: white;
+  z-index: 1; /* Behind the token */
 }
 .red {
   background-color: #f15930;
   transition: background-color 0.5s;
+  z-index: 5; /* Token is above the white circle */
 }
 .yellow {
   background-color: #ffd700;
   transition: background-color 0.5s;
+  z-index: 5;
 }
 
-/* --- Winning Combination Styles --- */
-/*! The class '.orange' below is added dynamically to the token (div red or yellow) */
+/* Token with animation ('drop' effect) */
+.drop {
+  animation: drop 0.5s ease-out;
+  /* position: relative; */
+  z-index: 5;
+}
+@keyframes drop {
+  from {
+    transform: translateY(-500px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* --- Winning combination styles --- */
 .orange {
   background-color: #ff9800 !important; /* Force orange on red or yellow */
   border: 3px solid white;

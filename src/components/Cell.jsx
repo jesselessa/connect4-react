@@ -12,7 +12,7 @@ class Cell extends React.Component {
     const { value, columnIndex, rowIndex, play, winningCombination } = this.props;
 
     // 1. Change cell color based on player value
-    let color = "white"; // Default empty cell
+    let color = "white"; // Empty cell by default
     if (value === 1) {
       color = "red"; // Player 1 (Human)
     } else if (value === 2) {
@@ -25,17 +25,21 @@ class Cell extends React.Component {
       (coord) => coord[0] === rowIndex && coord[1] === columnIndex
     );
 
+    const dropClass = value ? "drop" : ""; // If player has placed a token, add 'drop' class for animation
+
     return (
       <td>
-        {/* Clickable cell */}
         <div
-          className="cell"
+          className="cell" // Clickable cell to activate 'play' function
           onClick={() => {
             play(columnIndex);
           }}
         >
-          {/* Si isWinningCell est vrai, on ajoute la classe 'orange', sinon rien */}
-          <div className={`${color} ${isWinningCell ? "orange" : ""}`}></div>
+          {/* Permanent empty cell */}
+          <div className="white"></div>
+
+          {/* Token with animation */}
+          <div className={`${color} ${dropClass} ${isWinningCell ? "orange" : ""}`}></div>
         </div>
       </td>
     );
