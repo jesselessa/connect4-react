@@ -15,6 +15,7 @@ import Speaker from "./components/Speaker.jsx";
 // Audio
 import winner from "./assets/audio/winning.mp3";
 import drawOrFailure from "./assets/audio/draw-or-failure.mp3";
+import tokenSound from "./assets/audio/token.mp3";
 
 class App extends React.Component {
   constructor() {
@@ -30,13 +31,15 @@ class App extends React.Component {
       isVsCPU: true, // Computer mode by default 
       winningCombination: [], // Coordinates of winning tokens
       lastMove: null, // Last played position for animation
+      isSoundEnabled: true, // Enable/disable token sound
     };
 
     // Speaker reference
     this.speakerRef = createRef(); // Targets Speaker component => Allows App to access its methods like stopMusic()
 
-    // Bind play function to 'this' (App component)
+    // Binding methods (attached to 'this' i.e. App component)
     this.play = this.play.bind(this);
+    this.toggleSound = this.toggleSound.bind(this);
   }
 
   // Create an empty board (6x7)
@@ -170,6 +173,13 @@ class App extends React.Component {
       for (let r = 5; r >= 0; r--) {
         if (!board[r][c]) {
           board[r][c] = this.state.currentPlayer;
+
+          // Jouer le son si activé
+          if (this.state.isSoundEnabled) {
+            const audio = new Audio(tokenSound);
+            audio.play();
+          }
+
           this.setState({ lastMove: { row: r, column: c } }); // Enregistrer la dernière position jouée
           break;
         }
@@ -323,6 +333,10 @@ class App extends React.Component {
   }
   //? Explanation: The checkAllMoves function consolidates the results of all individual move-checking functions (vertical, horizontal, right diagonal, left diagonal, and draw). It sequentially calls each of these functions and returns the result of the first one that indicates a win or a draw. If none of the functions find a winning condition or a draw, it returns undefined, indicating that the game is still in progress.
 
+  toggleSound() {
+    this.setState((prevState) => ({ isSoundEnabled: !prevState.isSoundEnabled }));
+  }
+
   render() {
     const messageClass = this.state.gameOver ? "message animated-text" : "message";
 
@@ -367,11 +381,17 @@ class App extends React.Component {
               </tbody>
             </table>
 
-            {/* 4. RESET BUTTON: Only if a player is selected (game in progress) */}
+            {/* 4. RESET AND TOKEN SOUND BUTTON: Only if a player is selected (game in progress) */}
             {this.state.currentPlayer !== null && (
-              <button className="reset-btn" onClick={() => this.initBoard()}>
-                RESET
-              </button>
+              <div className="btn-group">
+                <button className="reset-btn" onClick={() => this.initBoard()}>
+                  RESET
+                </button>
+
+                <button className="token-sound-btn" onClick={this.toggleSound}>
+                  {this.state.isSoundEnabled ? "Désactiver le son du jeton" : "Activer le son du jeton"}
+                </button>
+              </div>
             )}
           </div>
         </div>

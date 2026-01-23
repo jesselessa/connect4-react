@@ -47,13 +47,15 @@ It uses Class components (before React 16.8, it was the only way to track state 
 
 ## Musical credits
 
-Licence : Pixabay Content License
+Licence : Pixabay Content License (Free Use)
 
 - Backgroud music : ['80's Music - Electric Dreams 2.0' by Tech_Oasis](https://pixabay.com/fr/music/synthwave-80x27s-music-electric-dreams-20-211957/)
 
-- Winner sound effect : ['Winning' by PW23CHECK](https://pixabay.com/fr/sound-effects/winning-218995/)
+- Token sound : ['Coin Bag Pickup Drop' by ralph.whitehead (Freesound)](https://pixabay.com/fr/sound-effects/films-et-effets-sp%c3%a9ciaux-coin-bag-pickup-drop-94617/)
 
-- Draw game or game over sound effect : ['failure 1' by Leszek_Szary (Freesound)](https://pixabay.com/fr/sound-effects/failure-1-89170/)
+- Winner sound : ['Winning' by PW23CHECK](https://pixabay.com/fr/sound-effects/winning-218995/)
+
+- Draw game or game over sound : ['failure 1' by Leszek_Szary (Freesound)](https://pixabay.com/fr/sound-effects/failure-1-89170/)
 
 ## Run the project locally
 
