@@ -30,16 +30,16 @@ class Rules extends React.Component {
 
         <div className="rules">
           <p>
-            Insérez un jeton dans la grille à tour de rôle. Le premier joueur
-            qui réussit à aligner quatre jetons (horizontalement, verticalement
-            ou diagonalement) gagne la partie.
+            <span>But du jeu :</span> Alignez 4 jetons de votre couleur
+            (horizontalement, verticalement ou diagonalement) avant l'ordinateur.
           </p>
           <p>
-            Si toutes les cases de la grille sont remplies et qu'aucun des deux
-            joueurs n'a réalisé un tel alignement, la partie est déclarée nulle.
+            <span>Déroulement :</span> Choisissez qui commence, puis placez
+            vos jetons à tour de rôle. L'IA (jetons jaunes) tentera de vous bloquer !
           </p>
           <p>
-            Appuyez sur le bouton "Reset" pour commencer une nouvelle partie.
+            <span>Fin de partie :</span> Si la grille est pleine sans alignement,
+            le match est nul. Cliquez sur <span>"Reset"</span> pour retenter votre chance.
           </p>
         </div>
       </aside>

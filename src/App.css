@@ -111,6 +111,9 @@ button:active {
   padding: 1rem 1.5rem;
   gap: 1rem;
 }
+.rules span {
+  font-weight: bold;
+}
 .rules p:last-child {
   margin-bottom: 0;
 }
