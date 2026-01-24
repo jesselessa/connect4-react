@@ -35,10 +35,10 @@ class Cell extends React.Component {
             play(columnIndex);
           }}
         >
-          {/* Permanent empty cell */}
+          {/* Fixed cell white hole (empty cell) */}
           <div className="white"></div>
 
-          {/* Token with animation */}
+          {/* Player's token with color, animation, and winning highlight */}
           <div className={`${color} ${dropClass} ${isWinningCell ? "orange" : ""}`}></div>
         </div>
       </td>

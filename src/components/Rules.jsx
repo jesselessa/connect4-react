@@ -10,6 +10,29 @@ import React from "react";
 import children from "../assets/images/children.png";
 
 class Rules extends React.Component {
+  constructor(props) {
+    super(props);
+    // Initialize state with current window width
+    this.state = {
+      windowWidth: window.innerWidth
+    };
+  }
+
+  // Create update function to handle resize
+  handleResize = () => {
+    this.setState({ windowWidth: window.innerWidth });
+  };
+
+  // Add event listener on component mount
+  componentDidMount() {
+    window.addEventListener("resize", this.handleResize);
+  }
+
+  // Remove event listener on component unmount
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleResize);
+  }
+
   render() {
     return (
       <aside className="gameRules">
@@ -42,8 +65,17 @@ class Rules extends React.Component {
             le match est nul. Cliquez sur <span>"Reset"</span> pour retenter votre chance.
           </p>
 
+          {/* Conditional display depending on screen size */}
+          {this.state.windowWidth <= 992 && (
+            <a href="#titleAndBoard">
+              <p className="start-msg">
+                COMMENCEZ À JOUER
+              </p>
+            </a>
+          )}
+
           <footer>
-            <a href="https://github.com/jesselessa" target="_blank"
+            <a href="https://github.com/jesselessa" target="_blank" rel="noreferrer"
             >
               <p>
                 &copy; {new Date().getFullYear()} Jessica ELESSA - All rights reserved

@@ -108,7 +108,7 @@ button:active {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 1rem 1.5rem;
+  padding: 1rem;
   gap: 1rem;
 }
 .rules span {
@@ -116,6 +116,17 @@ button:active {
 }
 .rules p:last-child {
   margin-bottom: 0;
+}
+.rules a {
+  display: block;
+  text-decoration: none;
+}
+.start-msg {
+  text-align: center;
+  color: #2858a1;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 2rem;
 }
 .players {
   margin-bottom: 2rem !important;
@@ -130,10 +141,8 @@ footer {
   margin-top: auto;
 }
 footer a {
-  color: #2858a1;
+  color: black;
   font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
 }
 
 /* Title and board box */
@@ -479,6 +488,9 @@ figcaption {
 }
 
 @media only screen and (max-width: 400px) {
+  .rules p {
+    margin-bottom: 0.5rem;
+  }
   .cell {
     height: 4.5rem;
     width: 4.5rem;

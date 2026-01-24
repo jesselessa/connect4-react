@@ -1,4 +1,4 @@
-# Connect4-React
+# connect4-react-classes
 
 This project is an implementation of the well-known 'Connect 4' game.
 
@@ -46,7 +46,7 @@ Challenge our computer opponent in this classic strategy game ! Here is how it w
 
 - **Man vs Machine** : This project is designed as a single-player experience where you face off against an AI.
 - **Choose the Starter** : You decide who takes the first shot ! Select either "Player" or "AI" to start the game.
-- **Your Colors** : 
+- **Your Colors** :
   - **You** : Play with the **Red** tokens.
   - **AI** : Plays with the **Yellow** tokens.
 - **The Drop** : On your turn, click on any column to drop your token. The token will realistically fall to the lowest available space in that column.

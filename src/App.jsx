@@ -182,7 +182,7 @@ class App extends React.Component {
             audio.play();
           }
 
-          this.setState({ lastMove: { row: r, column: c } }); // Enregistrer la dernière position jouée
+          this.setState({ lastMove: { row: r, column: c } }); // Store last played position
           break;
         }
       }
@@ -346,7 +346,7 @@ class App extends React.Component {
       <div className="App">
         <Rules />
 
-        <div className="titleAndBoard">
+        <div className="titleAndBoard" id="titleAndBoard">
           {/* Pass the reference to Speaker */}
           <Speaker ref={this.speakerRef} />
 
