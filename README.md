@@ -64,8 +64,7 @@ Licence : Pixabay Content License (Free Use)
 - **Background Music** : ['80's Music - Electric Dreams 2.0' by Tech_Oasis](https://pixabay.com/fr/music/synthwave-80x27s-music-electric-dreams-20-211957/)
 - **Token Drop Sound** : ['Coin Bag Pickup Drop' by ralph.whitehead](https://pixabay.com/fr/sound-effects/films-et-effets-sp%c3%a9ciaux-coin-bag-pickup-drop-94617/)
 - **Victory Sound** : ['Winning' by PW23CHECK](https://pixabay.com/fr/sound-effects/winning-218995/)
-- **Game Over / Defeat Sound** : ['Failure 1' by Leszek_Szary](https://pixabay.com/fr/sound-effects/failure-1-89170/)
-- **Stalemate Sound** : ['Short Mission Accomplished' (Pixabay)](https://pixabay.com/fr/sound-effects/)
+- **Game Over / Stalemate Sound** : ['Failure 1' by Leszek_Szary](https://pixabay.com/fr/sound-effects/failure-1-89170/)
 
 ## Run the project locally
 
