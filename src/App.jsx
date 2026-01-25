@@ -20,14 +20,14 @@ class App extends React.Component {
     super();
     // 1. Initial State Definition
     this.state = {
-      board: [],
+      board: [], // Board grid (matrix: array of arrays)
       player1: 1, // Human
       player2: 2, // Computer (AI)
       currentPlayer: null,
       gameOver: false,
       message: "",
       isVsCPU: true, // Computer mode by default 
-      winningCombination: [], // Coordinates of winning tokens
+      winningCombination: [], // Stores [r,c] coordinates of the 4 winning tokens for highlighting
       lastMove: null, // Last played position for animation
       isSoundEnabled: true, // Token sound enabled by default
     };

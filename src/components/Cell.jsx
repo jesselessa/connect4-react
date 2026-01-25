@@ -24,6 +24,7 @@ class Cell extends React.Component {
     const isWinningCell = winningCombination.some(
       (coord) => coord[0] === rowIndex && coord[1] === columnIndex
     );
+    // ? Explanation: The winningCombination prop is an array of coordinate pairs representing the cells that form the winning line. Each pair is in the format [rowIndex, columnIndex]. The code checks if the current cell's coordinates match any of these pairs.
 
     const dropClass = value ? "drop" : ""; // If player has placed a token, add 'drop' class for animation
 
